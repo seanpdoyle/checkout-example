@@ -9,6 +9,6 @@ class VisitorIncrementsBookQuantityFromCartTest < ApplicationSystemTestCase
     expand_cart
     within cart { click_on translate("helpers.submit.line_item.increment") }
 
-    within expand_cart { assert_book ruby_science, quantity: 2 }
+    within cart { assert_book ruby_science, quantity: 2 }
   end
 end
