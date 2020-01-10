@@ -69,3 +69,26 @@
     </div>
   <% end %>
 </section>
+
+<footer class="
+  bg-red-100
+  flex
+  flex-col
+  px-8
+  py-8
+  space-y-6
+">
+  <div class="
+    flex
+    justify-between
+  ">
+    <span>
+      <%= translate(".total_in_dollars") %>
+    </span>
+
+    <span class="
+      font-bold
+    ">
+      <%= number_to_currency(order.total_in_dollars) %>
+    </span>
+</footer>
