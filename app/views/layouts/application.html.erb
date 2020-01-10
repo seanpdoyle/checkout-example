@@ -11,6 +11,72 @@
   </head>
 
   <body>
+    <header class="
+      flex
+      justify-between
+      m-4
+      md:mx-24
+      md:my-12
+    ">
+      <%= link_to books_path do %>
+        <%= inline_svg_tag("logo", title: translate(".brand"), class: "
+          h-8
+        ") %>
+      <% end %>
+
+      <details class="
+        cursor-pointer
+      ">
+        <summary class="
+          list-none
+          relative
+        ">
+          <%= inline_svg_tag("icons/shopping-cart", {
+            title: translate(".order"),
+            class: "
+              h-8
+              stroke-current
+              w-8
+            ",
+          }) %>
+
+        <% if Current.order.line_items.any? %>
+          <%= inline_svg_tag("icons/circle", {
+            class: "
+            absolute
+            top-0
+            right-0
+            fill-current
+            h-2
+            rounded-full
+            text-red-500
+            w-2
+            ",
+          }) %>
+        <% end %>
+        </summary>
+
+        <div class="
+          bg-white
+          bottom-0
+          cursor-auto
+          fixed
+          h-screen
+          left-0
+          m-0
+          md:bottom-auto
+          md:left-auto
+          md:ml-auto
+          md:p-4
+          md:w-1/4
+          right-0
+          top-0
+        ">
+          <%= render(Current.order) %>
+        </div>
+      </details>
+    </header>
+
     <main>
       <aside>
         <% if flash.notice.present? %>
