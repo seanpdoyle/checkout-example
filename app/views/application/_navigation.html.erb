@@ -8,11 +8,21 @@
     ") %>
   <% end %>
 
-  <details class="
-    bg-white
-    m-0
-    p-0
-  ">
+  <details
+    id="order"
+    class="
+      bg-white
+      m-0
+      p-0
+    "
+    data-controller="
+      permanent
+    "
+    data-action="
+      turbolinks:before-render@document->permanent#cloneChildren
+    "
+    data-turbolinks-permanent
+  >
     <summary class="
       cursor-pointer
       list-none

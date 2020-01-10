@@ -12,7 +12,7 @@ class VisitorRemovesBooksFromCartTestTest < ApplicationSystemTestCase
     end
 
     assert_text removed_book_flash(ruby_science)
-    expand_cart do
+    within_cart do
       assert_no_book ruby_science
       assert_book testing_rails
       assert_total testing_rails.price_in_dollars

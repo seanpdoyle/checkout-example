@@ -21,14 +21,23 @@
     </header>
 
     <main>
-      <aside>
+      <aside
+        id="flashes"
+        data-controller="permanent"
+        data-action="turbolinks:before-render@document->permanent#cloneChildren"
+        data-permanent-append-value="true"
+        data-turbolinks-permanent
+      >
         <% if flash.notice.present? %>
-          <div class="
-            bg-green-700
-            m-2
-            p-2
-            text-white
-          ">
+          <div
+            data-controller="temporary"
+            data-temporary-delay-value="5000"
+            class="
+              bg-green-700
+              m-2
+              p-2
+              text-white
+            ">
             <%= flash.notice %>
           </div>
         <% end %>

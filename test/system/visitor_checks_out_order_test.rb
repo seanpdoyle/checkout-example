@@ -78,8 +78,10 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
       card_cvc: 737
     )
 
-    assert_no_text translate("checkouts.confirmations.show.title")
-    assert_describedby label(:payment, :card_number), "Your card was declined."
+    with_wait_time seconds: 3 do
+      assert_no_text translate("checkouts.confirmations.show.title")
+      assert_describedby label(:payment, :card_number), "Your card was declined."
+    end
   end
 
   test "visitor is notified when a payment submission has an expired card" do
@@ -94,8 +96,10 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
       card_cvc: 737
     )
 
-    assert_no_text translate("checkouts.confirmations.show.title")
-    assert_describedby label(:payment, :card_expiry), "Your card has expired."
+    with_wait_time seconds: 3 do
+      assert_no_text translate("checkouts.confirmations.show.title")
+      assert_describedby label(:payment, :card_expiry), "Your card has expired."
+    end
   end
 
   test "visitor is notified when a payment submission's card verification check fails" do
@@ -110,8 +114,10 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
       card_cvc: 737
     )
 
-    assert_no_text translate("checkouts.confirmations.show.title")
-    assert_describedby label(:payment, :card_cvc), "Your card's security code is incorrect."
+    with_wait_time seconds: 3 do
+      assert_no_text translate("checkouts.confirmations.show.title")
+      assert_describedby label(:payment, :card_cvc), "Your card's security code is incorrect."
+    end
   end
 
   def checkout
