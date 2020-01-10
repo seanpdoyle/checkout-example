@@ -11,6 +11,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <main>
+      <aside>
+        <% if flash.notice.present? %>
+          <div class="
+            bg-green-700
+            m-2
+            p-2
+            text-white
+          ">
+            <%= flash.notice %>
+          </div>
+        <% end %>
+      </aside>
+
+      <%= yield %>
+    </main>
   </body>
 </html>
