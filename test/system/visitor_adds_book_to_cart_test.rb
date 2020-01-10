@@ -9,9 +9,18 @@ class VisitorAddsBookToCartTest < ApplicationSystemTestCase
     click_on translate("helpers.submit.line_item.create")
 
     assert_text added_book_flash(ruby_science)
+    within expand_cart { assert_book ruby_science }
   end
 
   def added_book_flash(book)
     translate("line_items.create.notice", title: book.title)
+  end
+
+  def expand_cart
+    cart.tap(&:click)
+  end
+
+  def cart
+    find("details", text: translate("layouts.application.order"), visible: :all)
   end
 end
