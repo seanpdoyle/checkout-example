@@ -62,13 +62,42 @@
         <%= line_item.title %>
       </h1>
 
-      <p class="
-        font-semibold
-        text
+      <div class="
+        flex
+        flex-row
+        justify-between
       ">
+        <span>
+          <%= line_item.quantity %>
+        </span>
+
+        <span class="
+          font-semibold
+          text
+        ">
         <%= number_to_currency(line_item.price_in_dollars) %>
-      </p>
+        </span>
+      </div>
     </div>
   </div>
 <% end %>
 </section>
+
+<footer class="
+  bg-red-100
+  flex
+  flex-row
+  justify-between
+  px-8
+  py-12
+">
+  <span>
+    <%= translate(".total_in_dollars") %>
+  </span>
+
+  <span class="
+    font-bold
+  ">
+    <%= number_to_currency(order.total_in_dollars) %>
+  </span>
+</footer>

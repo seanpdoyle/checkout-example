@@ -54,3 +54,4 @@ en:
     order:
       close: "Close cart"
       title: "My Cart"
+      total_in_dollars: "Sub-total"

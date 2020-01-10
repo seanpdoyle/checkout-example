@@ -15,12 +15,4 @@ class VisitorAddsBookToCartTest < ApplicationSystemTestCase
   def added_book_flash(book)
     translate("line_items.create.notice", title: book.title)
   end
-
-  def expand_cart
-    cart.tap(&:click)
-  end
-
-  def cart
-    find("details", text: translate("layouts.application.order"), visible: :all)
-  end
 end
