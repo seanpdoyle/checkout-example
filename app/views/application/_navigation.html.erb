@@ -1,0 +1,75 @@
+<nav class="
+  flex
+  justify-between
+">
+  <%= link_to books_path do %>
+    <%= translate(".brand") %>
+  <% end %>
+
+  <details class="
+    bg-white
+    m-0
+    p-0
+  ">
+    <summary class="
+      cursor-pointer
+      list-none
+      open:fixed
+      right-0
+      top-0
+      z-20
+    ">
+      <div class="
+        block
+        open:hidden
+      ">
+        <%= translate(".order.open") %>
+      </div>
+
+      <div class="
+        hidden
+        px-8
+        py-10
+        open:block
+      ">
+        <%= translate(".order.close") %>
+      </div>
+    </summary>
+
+    <div class="
+      bg-white
+      bottom-0
+      cursor-auto
+      fixed
+      flex
+      flex-col
+      h-screen
+      left-0
+      m-0
+      md:bottom-auto
+      md:left-auto
+      md:ml-auto
+      md:w-1/4
+      p-0
+      right-0
+      top-0
+      z-10
+    ">
+      <%= render(Current.order) %>
+    </div>
+
+    <div class="
+      fixed
+      bg-black
+      bg-opacity-25
+      h-screen
+      hidden
+      md:block
+      left-0
+      right-0
+      top-0
+      bottom-0
+    ">
+    </div>
+  </details>
+</nav>

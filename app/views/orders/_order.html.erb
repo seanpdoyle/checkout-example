@@ -1,0 +1,71 @@
+<header class="
+  flex
+  items-center
+  justify-between
+  p-8
+">
+  <h1 class="
+    font-bold
+    text-3xl
+  ">
+    <%= translate(".title") %>
+  </h1>
+</header>
+
+<section class="
+  flex-grow
+  overflow-y-auto
+  p-8
+  space-y-4
+">
+  <% order.line_items.for_cart.each do |line_item| %>
+    <div class="
+      flex
+      flex-row
+      justify-between
+      space-x-4
+    ">
+      <div class="
+        bg-red-100
+        justify-center
+        px-4
+        py-6
+        rounded-lg
+      ">
+        <%= render("books/cover", caption: line_item.title, class: "
+          h-18
+          w-12
+        ") %>
+      </div>
+
+      <div class="
+        flex
+        flex-col
+        flex-grow
+        items-center
+        justify-center
+        text-center
+      ">
+        <h1 class="
+          font-semibold
+        ">
+          <%= line_item.title %>
+        </h1>
+
+        <div class="
+          flex
+          flex-row
+          justify-between
+        ">
+          <span><%= line_item.quantity %></span>
+
+          <span class="
+            font-semibold
+          ">
+            <%= number_to_currency(line_item.price_in_dollars) %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>

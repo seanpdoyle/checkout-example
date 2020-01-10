@@ -6,6 +6,8 @@ class LineItem < ApplicationRecord
 
   delegate_missing_to :book
 
+  scope :for_cart, -> { order(created_at: :desc).includes(:book) }
+
   def increment=(step)
     self.quantity = quantity + step.to_i
   end

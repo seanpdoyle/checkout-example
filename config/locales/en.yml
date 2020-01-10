@@ -30,6 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  application:
+    navigation:
+      brand: "thoughtbooks"
+      order:
+        open: "Your current order"
+        close: "Close"
+
   books:
     index:
       title: "Explore our Library"
@@ -44,3 +51,7 @@ en:
   line_items:
     create:
       notice: "We've added %{title} to your order."
+
+  orders:
+    order:
+      title: "My Cart"

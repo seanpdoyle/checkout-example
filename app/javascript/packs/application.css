@@ -1,3 +1,22 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+[open].open\:block,
+[open] .open\:block {
+  display: block;
+}
+
+[open].open\:hidden,
+[open] .open\:hidden {
+  display: none;
+}
+
+[open].open\:fixed,
+[open] .open\:fixed {
+  position: fixed;
+}
