@@ -46,4 +46,13 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
+
+  config.middleware.use Rack::BackDoor do |env, order_id|
+    if order_id.present?
+      request = ActionDispatch::Request.new(env)
+      order = Order.find(order_id)
+
+      request.cookie_jar[:order_token] = order.token
+    end
+  end
 end
