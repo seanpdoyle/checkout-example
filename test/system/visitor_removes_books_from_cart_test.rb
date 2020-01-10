@@ -14,7 +14,7 @@ class VisitorRemovesBooksFromCartTestTest < ApplicationSystemTestCase
     click_on translate("orders.order.remove", book: ruby_science.title)
 
     assert_text removed_book_flash(ruby_science)
-    within expand_cart do
+    within cart do
       assert_no_book ruby_science
       assert_book testing_rails
       assert_total testing_rails.price_in_dollars
