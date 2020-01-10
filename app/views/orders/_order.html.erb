@@ -1,0 +1,11 @@
+<% order.line_items.order(created_at: :desc).includes(:book).each do |line_item| %>
+  <div>
+    <span>
+      <%= line_item.title %>
+    </span>
+
+    <span>
+      <%= number_to_currency(line_item.price_in_dollars) %>
+    </span>
+  </div>
+<% end %>
