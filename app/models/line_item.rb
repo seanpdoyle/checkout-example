@@ -4,8 +4,12 @@ class LineItem < ApplicationRecord
 
   delegate_missing_to :book
 
-  def self.total
-    joins(:book).sum("books.price_in_cents")
+  def self.total_in_cents
+    joins(:book).sum { |line_item| line_item.price_in_cents }
+  end
+
+  def price_in_cents
+    book.price_in_cents * quantity
   end
 
   def increment=(step)

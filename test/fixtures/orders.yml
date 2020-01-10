@@ -1,2 +1,5 @@
 empty:
   token: $LABEL
+
+rails:
+  token: $LABEL
