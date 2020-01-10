@@ -36,6 +36,11 @@ en:
     show:
       library: "Library"
 
+  layouts:
+    application:
+      brand: "thoughtbooks"
+      order: "Your current order"
+
   line_items:
     create:
       notice: "We've added %{title} to your order."
