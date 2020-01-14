@@ -67,6 +67,7 @@
       </p>
 
       <%= form_with(model: [book, book.line_items.build], html: {
+        "data-scroll-permanent": true,
         "data-controller": "
           quantity-form
         ",
