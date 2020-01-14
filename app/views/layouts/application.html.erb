@@ -10,7 +10,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body
+    data-controller="scroll"
+    data-action="
+      submit->scroll#savePosition
+      turbolinks:load@document->scroll#restorePosition
+    "
+  >
     <header class="
       flex
       justify-between
