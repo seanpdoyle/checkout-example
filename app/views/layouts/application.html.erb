@@ -11,7 +11,13 @@
     <script src="https://js.stripe.com/v3"></script>
   </head>
 
-  <body>
+  <body
+    data-controller="scroll"
+    data-action="
+      submit->scroll#savePosition
+      turbolinks:load@document->scroll#restorePosition
+    "
+  >
     <header class="
       flex
       justify-between
