@@ -19,4 +19,13 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_text book.title
     assert_text number_to_currency(book.price_in_dollars)
   end
+
+  def assert_no_book(book)
+    assert_no_text book.title
+    assert_no_text number_to_currency(book.price_in_dollars)
+  end
+
+  def assert_total(*prices)
+    assert_text number_to_currency(prices.sum)
+  end
 end
