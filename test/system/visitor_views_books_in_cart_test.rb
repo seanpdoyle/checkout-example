@@ -15,8 +15,4 @@ class VisitorViewsBooksInCartTest < ApplicationSystemTestCase
       assert_total ruby_science.price_in_dollars, testing_rails.price_in_dollars
     end
   end
-
-  def assert_total(*prices)
-    number_to_currency(prices.sum)
-  end
 end

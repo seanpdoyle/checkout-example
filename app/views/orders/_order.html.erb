@@ -33,7 +33,21 @@
     flex
     flex-row
     justify-between
+    space-x-4
   ">
+    <div class="
+      self-center
+    ">
+      <%= form_with(model: line_item, method: :delete) do |form| %>
+        <%= form.button do %>
+          <%= inline_svg_tag("icons/x", title: translate(".remove", book: line_item.title), class: "
+            h-4
+            stroke-current
+            w-4
+          ") %>
+        <% end %>
+      <% end %>
+    </div>
     <div class="
       bg-red-100
       flex
