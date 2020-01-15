@@ -14,13 +14,4 @@ class VisitorViewsBooksInCartTest < ApplicationSystemTestCase
       assert_total ruby_science.price_in_dollars, testing_rails.price_in_dollars
     end
   end
-
-  def add_to_cart(book)
-    visit book_path(book)
-    click_on submit(:line_item)
-  end
-
-  def assert_total(*prices)
-    assert_text number_to_currency(prices.sum)
-  end
 end

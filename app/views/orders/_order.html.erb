@@ -26,6 +26,16 @@
       space-x-4
     ">
       <div class="
+        self-center
+      ">
+        <%= form_with(model: line_item, method: :delete) do |form| %>
+          <%= form.button do %>
+            <%= translate(".remove", book: line_item.title) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="
         bg-red-100
         justify-center
         px-4
