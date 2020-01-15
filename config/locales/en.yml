@@ -44,14 +44,18 @@ en:
   line_items:
     create:
       notice: "We've added %{title} to your order."
+    destroy:
+      notice: "We've removed %{title} from your order."
 
   helpers:
     submit:
       line_item:
         create: "Add to Cart"
+        update: "Remove from Cart"
 
   orders:
     order:
       close: "Close cart"
+      remove: "Remove %{book} from the cart"
       title: "My Cart"
       total: "Sub-total"

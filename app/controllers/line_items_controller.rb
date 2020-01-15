@@ -16,6 +16,17 @@ class LineItemsController < ApplicationController
     )
   end
 
+  def destroy
+    line_item = Current.order.line_items.find(params[:id])
+
+    line_item.destroy!
+
+    redirect_back(
+      fallback_location: root_url,
+      flash: {notice: translate(".notice", title: line_item.title)}
+    )
+  end
+
   private
 
   def line_item_params
