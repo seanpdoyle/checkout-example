@@ -1,0 +1,6 @@
+<%= form_with(model: checkout) do |form| %>
+  <%= form.label(:shipping_address) %>
+  <%= form.text_field(:shipping_address) %>
+
+  <%= form.submit %>
+<% end %>

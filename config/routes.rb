@@ -5,5 +5,15 @@ Rails.application.routes.draw do
   end
   resources :line_items, only: [:update, :destroy]
 
+  resources :checkouts, module: :checkout, only: [] do
+    resources :payments, only: [:new]
+    resources :shipments, only: [:new]
+  end
+
+  namespace :checkout do
+    resources :payments, only: [:update]
+    resources :shipments, only: [:update]
+  end
+
   root to: redirect("/books")
 end

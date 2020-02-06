@@ -48,7 +48,13 @@ en:
       notice: "We've removed %{title} from your order."
 
   helpers:
+    label:
+      checkout_shipment:
+        shipping_address: "Shipping Address"
+
     submit:
+      checkout_shipment:
+          update: "Next"
       line_item:
         create: "Add to Cart"
         increment: "Add one"
@@ -56,6 +62,7 @@ en:
 
   orders:
     order:
+      checkout: "Checkout"
       close: "Close cart"
       remove: "Remove %{book} from the cart"
       title: "My Cart"

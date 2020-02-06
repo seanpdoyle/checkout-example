@@ -1,0 +1,11 @@
+<%= render(partial: checkout.becomes(Checkout::Shipment)) %>
+
+<%= form_with(model: checkout) do |form| %>
+  <%= form.label(:bill_with_shipping_address) %>
+  <%= form.check_box(:bill_with_shipping_address) %>
+
+  <%= form.label(:billing_address) %>
+  <%= form.text_field(:billing_address) %>
+
+  <%= form.submit %>
+<% end %>

@@ -141,4 +141,10 @@
   ">
     <%= number_to_currency(order.total_in_dollars) %>
   </span>
+
+  <% if order.line_items.any? %>
+    <%= link_to new_checkout_shipping_path(order) do %>
+      <%= translate(".checkout") %>
+    <% end %>
+  <% end %>
 </footer>

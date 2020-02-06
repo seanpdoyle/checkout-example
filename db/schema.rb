@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_153432) do
     t.string "token", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "shipping_address"
     t.index ["token"], name: "index_orders_on_token", unique: true
   end
 
