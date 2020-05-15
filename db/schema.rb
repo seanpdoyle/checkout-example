@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2020_07_17_153432) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "shipping_address"
+    t.text "billing_address"
+    t.boolean "bill_with_shipping_address", default: false, null: false
     t.index ["token"], name: "index_orders_on_token", unique: true
   end
 
