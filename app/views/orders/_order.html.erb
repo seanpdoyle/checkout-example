@@ -1,27 +1,3 @@
-<header class="
-  flex
-  items-center
-  justify-between
-  p-8
-">
-  <h1 class="
-    font-bold
-    text-3xl
-  ">
-    <%= translate(".title") %>
-  </h1>
-
-  <form method="dialog">
-    <button type="submit">
-      <%= inline_svg_tag("icons/x", title: translate(".close"), class: "
-        h-6
-        stroke-current
-        w-6
-      ") %>
-    </button>
-  </form>
-</header>
-
 <section class="
   flex-grow
   overflow-y-auto
@@ -123,28 +99,3 @@
   </div>
 <% end %>
 </section>
-
-<footer class="
-  bg-red-100
-  flex
-  flex-row
-  justify-between
-  px-8
-  py-12
-">
-  <span>
-    <%= translate(".total") %>
-  </span>
-
-  <span class="
-    font-bold
-  ">
-    <%= number_to_currency(order.total_in_dollars) %>
-  </span>
-
-  <% if order.line_items.any? %>
-    <%= link_to new_checkout_shipping_path(order) do %>
-      <%= translate(".checkout") %>
-    <% end %>
-  <% end %>
-</footer>

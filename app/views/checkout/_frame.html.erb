@@ -1,0 +1,13 @@
+<div style="
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+">
+  <div>
+    <%= yield %>
+  </div>
+
+  <div>
+    <%= render("orders/order", order: checkout) %>
+  </div>
+</div>

@@ -1,20 +1,22 @@
-<nav>
-  <span aria-current="page" class="breadcrumb breadcrumb--current">
-    Shipment
-  </span>
+<%= render("checkout/frame", checkout: checkout) do %>
+  <nav>
+    <span aria-current="page" class="breadcrumb breadcrumb--current">
+      <%= translate("checkout.steps.shipment") %>
+    </span>
 
-  <span class="breadcrumb">
-    Payment
-  </span>
+    <span class="breadcrumb">
+      <%= translate("checkout.steps.payment") %>
+    </span>
 
-  <span class="breadcrumb">
-    Confirmation
-  </span>
-</nav>
+    <span class="breadcrumb">
+      <%= translate("checkout.steps.confirmation") %>
+    </span>
+  </nav>
 
-<%= form_with(model: checkout) do |form| %>
-  <%= form.label(:shipping_address) %>
-  <%= form.text_field(:shipping_address) %>
+  <%= form_with(model: checkout) do |form| %>
+    <%= form.label(:shipping_address) %>
+    <%= form.text_field(:shipping_address) %>
 
-  <%= form.submit %>
+    <%= form.submit %>
+  <% end %>
 <% end %>

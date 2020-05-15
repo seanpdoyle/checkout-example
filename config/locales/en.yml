@@ -39,13 +39,23 @@ en:
   layouts:
     application:
       brand: "thoughtbooks"
+      checkout: "Checkout"
+      close: "Close cart"
       order: "Your current order"
+      title: "My Cart"
+      total: "Sub-total"
 
   line_items:
     create:
       notice: "We've added %{title} to your order."
     destroy:
       notice: "We've removed %{title} from your order."
+
+  checkout:
+    steps:
+      shipment: "Shipment"
+      payment: "Payment"
+      confirmation: "Confirmation"
 
   helpers:
     label:
@@ -66,8 +76,4 @@ en:
 
   orders:
     order:
-      checkout: "Checkout"
-      close: "Close cart"
       remove: "Remove %{book} from the cart"
-      title: "My Cart"
-      total: "Sub-total"
