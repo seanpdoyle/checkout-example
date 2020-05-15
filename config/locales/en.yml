@@ -49,10 +49,14 @@ en:
 
   helpers:
     label:
+      checkout_payment:
+        billing_address: "Billing Address"
       checkout_shipment:
         shipping_address: "Shipping Address"
 
     submit:
+      checkout_payment:
+          update: "Purchase"
       checkout_shipment:
           update: "Next"
       line_item:

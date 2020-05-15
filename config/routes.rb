@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     resources :shipments, only: [:update]
   end
 
+  resources :orders, only: [:show]
+
   root to: redirect("/books")
 end

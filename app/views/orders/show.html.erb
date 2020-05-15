@@ -1,0 +1,5 @@
+<%= render(partial: order.becomes(Checkout::Shipment)) %>
+
+<%= render(partial: order.becomes(Checkout::Payment)) %>
+
+<%= number_to_currency(order.total) %>
