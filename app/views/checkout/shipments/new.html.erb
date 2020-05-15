@@ -1,3 +1,17 @@
+<nav>
+  <span aria-current="page" class="breadcrumb breadcrumb--current">
+    Shipment
+  </span>
+
+  <span class="breadcrumb">
+    Payment
+  </span>
+
+  <span class="breadcrumb">
+    Confirmation
+  </span>
+</nav>
+
 <%= form_with(model: checkout) do |form| %>
   <%= form.label(:shipping_address) %>
   <%= form.text_field(:shipping_address) %>

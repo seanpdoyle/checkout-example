@@ -1,3 +1,17 @@
+<nav>
+  <%= link_to new_checkout_shipment_path(checkout), class: "breadcrumb" do %>
+    Shipment
+  <% end %>
+
+  <span aria-current="page" class="breadcrumb breadcrumb--current">
+    Payment
+  </span>
+
+  <span class="breadcrumb">
+    Confirmation
+  </span>
+</nav>
+
 <%= render(partial: checkout.becomes(Checkout::Shipment)) %>
 
 <%= form_with(model: checkout) do |form| %>
