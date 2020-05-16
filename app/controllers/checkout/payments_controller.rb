@@ -12,7 +12,9 @@ module Checkout
 
       checkout.assign_attributes(checkout_payment_params)
 
-      checkout.save!(:finalization)
+      checkout.save!(context: :finalization)
+
+      cookies.delete(:order_token)
 
       redirect_to order_url(checkout)
     end
@@ -23,6 +25,7 @@ module Checkout
       params.require(:checkout_payment).permit(
         :billing_address,
         :bill_with_shipping_address,
+        :stripe_payment_method_id,
       )
     end
   end

@@ -2,7 +2,8 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
   static targets = [
-    "card"
+    "card",
+    "paymentMethod",
   ]
 
   connect() {
@@ -19,6 +20,10 @@ export default class extends Controller {
   }
 
   async submitPayment(event) {
+    if (this.paymentMethodTarget.value) {
+      return
+    }
+
     event.preventDefault()
 
     const result = await this.stripe.confirmCardPayment(this.clientSecret, {
@@ -28,8 +33,9 @@ export default class extends Controller {
     if (result.error) {
       debugger
     } else if (result.paymentIntent.status === "succeeded") {
-      const paymentMethod = result.paymentIntent.paymentMethod
-      debugger
+      this.paymentMethodTarget.value = result.paymentIntent.payment_method
+
+      this.element.requestSubmit()
     }
   }
 

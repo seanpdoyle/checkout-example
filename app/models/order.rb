@@ -11,4 +11,9 @@ class Order < ApplicationRecord
   def currency
     "usd"
   end
+
+  def finalized?
+    stripe_payment_intent_id.present? &&
+      stripe_payment_method_id.present?
+  end
 end

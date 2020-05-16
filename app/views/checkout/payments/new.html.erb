@@ -1,7 +1,3 @@
-<% content_for :head do %>
-  <script src="https://js.stripe.com/v3/"></script>
-<% end %>
-
 <%= render("checkout/frame", checkout: checkout) do %>
   <nav>
     <%= link_to new_checkout_shipment_path(checkout), class: "breadcrumb" do %>
@@ -25,6 +21,11 @@
     "data-payment-stripe-publishable-key": checkout.stripe_publishable_key,
     "data-payment-stripe-client-secret": checkout.payment_intent.client_secret,
   }) do |form| %>
+    <%= form.hidden_field(
+      :stripe_payment_method_id,
+      "data-target": "payment.paymentMethod",
+    ) %>
+
     <%= form.label(:bill_with_shipping_address) %>
     <%= form.check_box(:bill_with_shipping_address) %>
 

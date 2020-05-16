@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_153432) do
     t.text "billing_address"
     t.boolean "bill_with_shipping_address", default: false, null: false
     t.string "stripe_payment_intent_id"
+    t.string "stripe_payment_method_id"
     t.index ["token"], name: "index_orders_on_token", unique: true
   end
 

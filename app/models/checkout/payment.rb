@@ -4,6 +4,9 @@ module Checkout
       on: :finalization,
       unless: :bill_with_shipping_address?
     }
+    validates :stripe_payment_method_id, presence: {
+      on: :finalization,
+    }
     validates :stripe_payment_intent_id, presence: true
 
     def prepare_for_payment!
