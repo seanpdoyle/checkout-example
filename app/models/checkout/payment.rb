@@ -1,9 +1,20 @@
 module Checkout
   class Payment < Order
-    validates :billing_address, presence: {
-      on: :finalization,
-      unless: :bill_with_shipping_address?
-    }
+    store_accessor :billing_address,
+      :line1,
+      :line2,
+      :city,
+      :state,
+      :postal_code,
+      :country,
+      prefix: :billing
+
+    validates :billing_line1, presence: { on: :finalization }
+    validates :billing_city, presence: { on: :finalization }
+    validates :billing_state, presence: { on: :finalization }
+    validates :billing_postal_code, length: { is: 5, on: :finalization }
+    validates :billing_country, presence: { on: :finalization }
+
     validates :stripe_payment_method_id, presence: {
       on: :finalization,
     }

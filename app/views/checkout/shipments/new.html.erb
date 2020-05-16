@@ -14,8 +14,25 @@
   </nav>
 
   <%= form_with(model: checkout) do |form| %>
-    <%= form.label(:shipping_address) %>
-    <%= form.text_field(:shipping_address) %>
+    <%= form.fields_for(:shipping_address) do |address_form| %>
+      <%= address_form.label(:line1) %>
+      <%= address_form.text_field(:line1) %>
+
+      <%= address_form.label(:line2) %>
+      <%= address_form.text_field(:line2) %>
+
+      <%= address_form.label(:city) %>
+      <%= address_form.text_field(:city) %>
+
+      <%= address_form.label(:state) %>
+      <%= address_form.text_field(:state) %>
+
+      <%= address_form.label(:postal_code) %>
+      <%= address_form.text_field(:postal_code) %>
+
+      <%= address_form.label(:country) %>
+      <%= address_form.text_field(:country) %>
+    <% end %>
 
     <%= form.submit %>
   <% end %>
