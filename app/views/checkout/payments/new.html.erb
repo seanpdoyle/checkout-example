@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <script src="https://js.stripe.com/v3/"></script>
+<% end %>
+
 <%= render("checkout/frame", checkout: checkout) do %>
   <nav>
     <%= link_to new_checkout_shipment_path(checkout), class: "breadcrumb" do %>
@@ -15,12 +19,19 @@
 
   <%= render(partial: checkout.becomes(Checkout::Shipment)) %>
 
-  <%= form_with(model: checkout) do |form| %>
+  <%= form_with(model: checkout, html: {
+    "data-controller": "payment",
+    "data-action": "submit->payment#submitPayment",
+    "data-payment-stripe-publishable-key": checkout.stripe_publishable_key,
+    "data-payment-stripe-client-secret": checkout.payment_intent.client_secret,
+  }) do |form| %>
     <%= form.label(:bill_with_shipping_address) %>
     <%= form.check_box(:bill_with_shipping_address) %>
 
     <%= form.label(:billing_address) %>
     <%= form.text_field(:billing_address) %>
+
+    <div data-target="payment.card"></div>
 
     <%= form.submit %>
   <% end %>

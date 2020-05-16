@@ -7,4 +7,8 @@ class Order < ApplicationRecord
   def total_in_dollars
     line_items.total_in_cents / 100
   end
+
+  def currency
+    "usd"
+  end
 end

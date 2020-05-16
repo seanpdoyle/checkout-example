@@ -1,0 +1,11 @@
+default: &default
+  publishable_key: "pk_test_UFqLF0LafmuA4RXizsCmC0EH00biRYZcFZ"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
