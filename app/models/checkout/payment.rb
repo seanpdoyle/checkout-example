@@ -1,7 +1,7 @@
 module Checkout
   class Payment < Order
-    validates :stripe_payment_intent_id, presence: true
-    validates :stripe_payment_method_id, presence: true
+    validates :stripe_payment_intent_id, presence: { on: :charge }
+    validates :stripe_payment_method_id, presence: { on: :charge }
 
     def prepare_for_payment!
       if payment_intent.blank?

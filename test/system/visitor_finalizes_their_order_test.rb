@@ -17,9 +17,13 @@ class VisitorFinalizesTheirOrderTest < ApplicationSystemTestCase
     visit root_path(as: order)
     expand_cart
     click_on translate("orders.order.checkout")
-    fill_in_address shipping_address
+    within :fieldset, text: "Shipping Address" do
+      fill_in_address shipping_address
+    end
     click_on submit(:checkout_shipment, :update)
-    fill_in_address billing_address
+    within :fieldset, text: "Billing Address" do
+      fill_in_address billing_address
+    end
     click_on submit(:checkout_billing, :update)
 
     assert_text shipping_address.line1

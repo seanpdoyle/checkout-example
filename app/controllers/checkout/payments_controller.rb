@@ -10,7 +10,9 @@ module Checkout
     def update
       checkout = Checkout::Payment.find(params[:id])
 
-      checkout.update!(checkout_payment_params)
+      checkout.assign_attributes(checkout_payment_params)
+
+      checkout.save!(context: :charge)
 
       cookies.delete(:order_token)
 
