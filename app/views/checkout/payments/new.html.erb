@@ -5,9 +5,8 @@
 
   <%= form_with(model: checkout, html: {
     "data-controller": "payment",
-    "data-action": "submit->payment#submitPayment",
     "data-payment-stripe-publishable-key": checkout.stripe_publishable_key,
-    "data-payment-stripe-client-secret": checkout.payment_intent.client_secret,
+    "data-payment-stripe-client-secret": checkout.stripe_payment_intent.client_secret,
   }) do |form| %>
     <%= form.hidden_field(
       :stripe_payment_method_id,
@@ -16,6 +15,6 @@
 
     <div data-target="payment.card"></div>
 
-    <%= form.submit %>
+    <%= form.submit(type: :button, "data-action": "click->payment#submitPayment") %>
   <% end %>
 <% end %>

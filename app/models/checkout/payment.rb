@@ -1,31 +1,43 @@
 module Checkout
   class Payment < Order
-    validates :stripe_payment_intent_id, presence: { on: :charge }
-    validates :stripe_payment_method_id, presence: { on: :charge }
+    validates :stripe_payment_intent_id, presence: true
+    validates :stripe_payment_intent_status, inclusion: {
+      in: ["succeeded"],
+      on: :charge,
+    }
+
+    def stripe_payment_intent_status
+      stripe_payment_intent.status
+    end
 
     def prepare_for_payment!
-      if payment_intent.blank?
-        new_payment_intent = Stripe::PaymentIntent.create(
+      if stripe_payment_intent.blank?
+        payment_intent = Stripe::PaymentIntent.create(
           amount: line_items.total,
           currency: currency
         )
-        update!(payment_intent: new_payment_intent)
+        update!(stripe_payment_intent: payment_intent)
       else
         Stripe::PaymentIntent.update(
+<<<<<<< HEAD
           payment_intent.id,
           amount: line_items.total_in_cents
+=======
+          stripe_payment_intent.id,
+          amount: line_items.total,
+>>>>>>> 427cf3f... passing all tests!
         )
       end
     end
 
-    def payment_intent=(payment_intent)
-      @payment_intent = payment_intent
-      self.stripe_payment_intent_id = payment_intent.id
+    def stripe_payment_intent=(stripe_payment_intent)
+      @stripe_payment_intent = stripe_payment_intent
+      self.stripe_payment_intent_id = stripe_payment_intent.id
     end
 
-    def payment_intent
+    def stripe_payment_intent
       if stripe_payment_intent_id.present?
-        @payment_intent ||= Stripe::PaymentIntent.retrieve(stripe_payment_intent_id)
+        Stripe::PaymentIntent.retrieve(stripe_payment_intent_id)
       end
     end
 

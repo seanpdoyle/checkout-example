@@ -20,12 +20,6 @@ export default class extends Controller {
   }
 
   async submitPayment(event) {
-    if (this.paymentMethodTarget.value) {
-      return
-    }
-
-    event.preventDefault()
-
     const result = await this.stripe.confirmCardPayment(this.clientSecret, {
       payment_method: { card: this.card },
     })
