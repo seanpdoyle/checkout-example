@@ -6,7 +6,59 @@
       </legend>
 
       <%= form.fields_for(:billing_address, checkout.billing_address) do |address_form| %>
-        <%= render("checkout/addresses/form", form: address_form) %>
+        <div class="field">
+          <%= address_form.label(:line1) %>
+          <%= address_form.text_field(:line1) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:line1].to_sentence %>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= address_form.label(:line2) %>
+          <%= address_form.text_field(:line2) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:line2].to_sentence %>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= address_form.label(:city) %>
+          <%= address_form.text_field(:city) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:city].to_sentence %>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= address_form.label(:state) %>
+          <%= address_form.text_field(:state) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:state].to_sentence %>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= address_form.label(:postal_code) %>
+          <%= address_form.text_field(:postal_code) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:postal_code].to_sentence %>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= address_form.label(:country) %>
+          <%= address_form.text_field(:country) %>
+
+          <span class="field__errors">
+            <%= address_form.object.errors[:country].to_sentence %>
+          </span>
+        </div>
       <% end %>
     </fieldset>
 

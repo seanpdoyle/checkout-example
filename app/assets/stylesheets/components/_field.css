@@ -1,0 +1,13 @@
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field__errors {
+  display: none;
+}
+
+.field_with_errors ~ .field__errors {
+  display: initial;
+  color: red;
+}
