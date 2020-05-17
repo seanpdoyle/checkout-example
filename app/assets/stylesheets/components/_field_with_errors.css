@@ -1,0 +1,12 @@
+.field_with_errors input {
+  border-color: red;
+}
+
+.field_with_errors__message {
+  display: none;
+}
+
+.field_with_errors ~ .field_with_errors__message {
+  display: initial;
+  color: red;
+}

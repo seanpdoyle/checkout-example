@@ -11,9 +11,13 @@ module Checkout
     def update
       checkout = Checkout::Shipment.find(params[:id])
 
-      checkout.update!(checkout_shipment_params)
-
-      redirect_to new_checkout_billing_url(checkout)
+      if checkout.update(checkout_shipment_params)
+        redirect_to new_checkout_billing_url(checkout)
+      else
+        render :new, status: :unprocessable_entity, locals: {
+          checkout: checkout,
+        }
+      end
     end
 
     private

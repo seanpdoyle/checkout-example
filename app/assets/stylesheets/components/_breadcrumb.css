@@ -1,0 +1,11 @@
+.breadcrumb::after {
+  content: "→";
+}
+
+.breadcrumb:last-child::after {
+  content: none;
+}
+
+.breadcrumb--current {
+  color: red;
+}
