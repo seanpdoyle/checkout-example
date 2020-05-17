@@ -10,11 +10,10 @@ module Checkout
     def update
       checkout = Checkout::Payment.find(params[:id])
 
-      if checkout.valid?
-        cookies.delete(:order_token)
+      checkout.charge!
+      cookies.delete(:order_token)
 
-        redirect_to order_url(checkout)
-      end
+      redirect_to checkout_confirmation_url(checkout)
     end
   end
 end

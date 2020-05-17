@@ -15,7 +15,7 @@ class Order < ApplicationRecord
     "usd"
   end
 
-  def finalized?
-    becomes(Checkout::Payment).valid?
+  def charged?
+    charged_at.present?
   end
 end

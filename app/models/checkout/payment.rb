@@ -6,6 +6,10 @@ module Checkout
       on: :charge,
     }
 
+    def charge!
+      update!(charged_at: Time.current)
+    end
+
     def stripe_payment_intent_status
       stripe_payment_intent.status
     end

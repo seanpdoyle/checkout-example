@@ -15,9 +15,8 @@ Rails.application.routes.draw do
     resources :shipments, only: [:update]
     resources :billings, only: [:update]
     resources :payments, only: [:update]
+    resources :confirmations, only: [:show]
   end
-
-  resources :orders, only: [:show]
 
   root to: redirect("/books")
 end
