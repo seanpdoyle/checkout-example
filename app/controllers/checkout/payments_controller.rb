@@ -10,21 +10,11 @@ module Checkout
     def update
       checkout = Checkout::Payment.find(params[:id])
 
-      checkout.assign_attributes(checkout_payment_params)
+      if checkout.valid?
+        cookies.delete(:order_token)
 
-      checkout.save!(context: :charge)
-
-      cookies.delete(:order_token)
-
-      redirect_to order_url(checkout)
-    end
-
-    private
-
-    def checkout_payment_params
-      params.require(:checkout_payment).permit(
-        :stripe_payment_method_id,
-      )
+        redirect_to order_url(checkout)
+      end
     end
   end
 end

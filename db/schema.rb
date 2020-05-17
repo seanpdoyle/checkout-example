@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_07_17_153432) do
     t.jsonb "shipping_address", default: {}, null: false
     t.jsonb "billing_address", default: {}, null: false
     t.string "stripe_payment_intent_id"
-    t.string "stripe_payment_method_id"
     t.index ["token"], name: "index_orders_on_token", unique: true
   end
 

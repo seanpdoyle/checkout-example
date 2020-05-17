@@ -3,7 +3,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = [
     "card",
-    "paymentMethod",
   ]
 
   connect() {
@@ -27,8 +26,6 @@ export default class extends Controller {
     if (result.error) {
       debugger
     } else if (result.paymentIntent.status === "succeeded") {
-      this.paymentMethodTarget.value = result.paymentIntent.payment_method
-
       this.element.requestSubmit()
     }
   }

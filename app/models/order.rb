@@ -16,7 +16,6 @@ class Order < ApplicationRecord
   end
 
   def finalized?
-    stripe_payment_intent_id.present? &&
-      stripe_payment_method_id.present?
+    becomes(Checkout::Payment).valid?
   end
 end

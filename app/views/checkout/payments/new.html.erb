@@ -8,11 +8,6 @@
     "data-payment-stripe-publishable-key": checkout.stripe_publishable_key,
     "data-payment-stripe-client-secret": checkout.stripe_payment_intent.client_secret,
   }) do |form| %>
-    <%= form.hidden_field(
-      :stripe_payment_method_id,
-      "data-target": "payment.paymentMethod",
-    ) %>
-
     <div data-target="payment.card"></div>
 
     <%= form.submit(type: :button, "data-action": "click->payment#submitPayment") %>
