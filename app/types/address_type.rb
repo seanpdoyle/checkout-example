@@ -1,15 +1,13 @@
-class AddressType < ActiveRecord::Type::Value
-  def cast(value)
-    if value.is_a?(String)
-      Address.new(
-        ActiveSupport::JSON.decode(value)
-      )
+class AddressType < ActiveRecord::Type::Json
+  def serialize(value)
+    if value.respond_to?(:attributes)
+      super(value.attributes)
     else
-      Address.new(value)
+      super
     end
   end
 
-  def serialize(value)
-    value.attributes.to_json
+  def deserialize(value)
+    Address.new(super)
   end
 end
