@@ -1,19 +1,7 @@
 <%= render("checkout/frame", checkout: checkout) do %>
-  <nav>
-    <%= link_to new_checkout_shipment_path(checkout), class: "breadcrumb" do %>
-      <%= translate("checkout.steps.shipment") %>
-    <% end %>
-
-    <span aria-current="page" class="breadcrumb breadcrumb--current">
-      <%= translate("checkout.steps.payment") %>
-    </span>
-
-    <span class="breadcrumb">
-      <%= translate("checkout.steps.confirmation") %>
-    </span>
-  </nav>
-
   <%= render(partial: checkout.becomes(Checkout::Shipment)) %>
+
+  <%= render(partial: checkout.becomes(Checkout::Billing)) %>
 
   <%= form_with(model: checkout, html: {
     "data-controller": "payment",

@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   resources :line_items, only: [:update, :destroy]
 
   resources :checkouts, module: :checkout, only: [] do
-    resources :payments, only: [:new]
     resources :shipments, only: [:new]
+    resources :billings, only: [:new]
+    resources :payments, only: [:new]
   end
 
   namespace :checkout do
-    resources :payments, only: [:update]
     resources :shipments, only: [:update]
+    resources :billings, only: [:update]
+    resources :payments, only: [:update]
   end
 
   resources :orders, only: [:show]

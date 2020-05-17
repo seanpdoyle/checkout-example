@@ -1,0 +1,23 @@
+<nav>
+  <% [
+    Checkout::Shipment,
+    Checkout::Billing,
+    Checkout::Payment,
+  ].each do |step_class| %>
+    <% text = translate(step_class.model_name.singular, scope: "checkout.steps") %>
+
+    <% if order.becomes(step_class).valid? %>
+      <%= link_to([:new, order.becomes(step_class)], class: "breadcrumb") do %>
+        <%= text %>
+      <% end %>
+    <% else %>
+      <span class="breadcrumb <%= "breadcrumb--current" if order.is_a?(step_class) %>">
+        <%= text %>
+      </span>
+    <% end %>
+  <% end %>
+
+  <span class="breadcrumb">
+    <%= translate(:order, scope: "checkout.steps") %>
+  </span>
+</nav>

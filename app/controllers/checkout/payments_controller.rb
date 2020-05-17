@@ -10,9 +10,7 @@ module Checkout
     def update
       checkout = Checkout::Payment.find(params[:id])
 
-      checkout.assign_attributes(checkout_payment_params)
-
-      checkout.save!(context: :finalization)
+      checkout.update!(checkout_payment_params)
 
       cookies.delete(:order_token)
 
@@ -23,8 +21,6 @@ module Checkout
 
     def checkout_payment_params
       params.require(:checkout_payment).permit(
-        :billing_address,
-        :bill_with_shipping_address,
         :stripe_payment_method_id,
       )
     end

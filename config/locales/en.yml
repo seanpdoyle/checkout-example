@@ -53,18 +53,24 @@ en:
 
   checkout:
     steps:
-      shipment: "Shipment"
-      payment: "Payment"
-      confirmation: "Confirmation"
+      checkout_shipment: "Shipping"
+      checkout_billing: "Billing"
+      checkout_payment: "Payment"
+      order: "Confirmation"
 
   helpers:
     label:
-      checkout_payment:
-        billing_address: "Billing Address"
-      checkout_shipment:
-        shipping_address: "Shipping Address"
+      address:
+        line1: "Address"
+        line2: "Apartment / Floor (optional)"
+        city: "City"
+        state: "State"
+        postal_code: "Postal Code"
+        country: "Country"
 
     submit:
+      checkout_billing:
+          update: "Next"
       checkout_payment:
           update: "Purchase"
       checkout_shipment:

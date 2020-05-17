@@ -1,6 +1,6 @@
 <%= render("checkout/frame", checkout: checkout) do %>
   <%= form_with(model: checkout) do |form| %>
-    <%= form.fields_for(:shipping_address, checkout.shipping_address) do |address_form| %>
+    <%= form.fields_for(:billing_address, checkout.billing_address) do |address_form| %>
       <%= address_form.label(:line1) %>
       <%= address_form.text_field(:line1) %>
 

@@ -11,13 +11,9 @@ module Checkout
     def update
       checkout = Checkout::Shipment.find(params[:id])
 
-      if checkout.update(checkout_shipment_params)
-        redirect_to new_checkout_payment_url(checkout)
-      else
-        render :new, locals: {
-          checkout: checkout,
-        }
-      end
+      checkout.update!(checkout_shipment_params)
+
+      redirect_to new_checkout_billing_url(checkout)
     end
 
     private
