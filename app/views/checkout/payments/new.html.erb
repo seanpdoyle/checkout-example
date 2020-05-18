@@ -5,11 +5,22 @@
 
   <%= form_with(model: checkout, html: {
     "data-controller": "payment",
+    "data-payment-invalid-class": "field_with_errors",
     "data-payment-stripe-publishable-key": checkout.stripe_publishable_key,
     "data-payment-stripe-client-secret": checkout.stripe_payment_intent.client_secret,
   }) do |form| %>
-    <div data-target="payment.card"></div>
+    <fieldset>
+      <legend>
+        Payment Information
+      </legend>
+        <div class="field">
+          <div data-payment-target="card"></div>
 
-    <%= form.submit(type: :button, "data-action": "click->payment#submitPayment") %>
+          <span class="field__errors" data-payment-target="errorMessage">
+          </span>
+        </div>
+    </fieldset>
+
+    <%= form.button(type: :button, "data-action": "click->payment#submitPayment") %>
   <% end %>
 <% end %>

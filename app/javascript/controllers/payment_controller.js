@@ -1,13 +1,21 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  static classes = [
+    "invalid",
+  ]
   static targets = [
     "card",
+    "errorMessage"
   ]
 
   connect() {
     this.stripe = Stripe(this.publishableKey)
-    this.card = this.stripe.elements().create("card")
+    this.card = this.stripe.elements().create("card", {
+      classes: {
+        invalid: this.invalidClass,
+      },
+    })
 
     this.card.addEventListener("change", (event) => {
       this.cardTarget.dispatchEvent(
@@ -24,7 +32,7 @@ export default class extends Controller {
     })
 
     if (result.error) {
-      debugger
+      this.errorMessageTarget.textContent = result.error.message
     } else if (result.paymentIntent.status === "succeeded") {
       this.element.requestSubmit()
     }

@@ -1,4 +1,6 @@
 <%= render("checkout/frame", checkout: checkout) do %>
+  <%= render(partial: checkout.becomes(Checkout::Shipment)) %>
+
   <%= form_with(model: checkout) do |form| %>
     <fieldset>
       <legend>
