@@ -42,13 +42,22 @@ module Checkout
   end
 
   class ShipmentValidationsTest < ActiveSupport::TestCase
+    test "is invalid when the email is blank" do
+      shipment = Checkout::Shipment.new(email: nil)
+
+      valid = shipment.validate
+
+      assert_equal false, valid
+      assert_includes shipment.errors, :email
+    end
+
     test "is invalid when the shipping_address is blank" do
       shipment = Checkout::Shipment.new(shipping_address: nil)
 
       valid = shipment.validate
 
       assert_equal false, valid
-      assert_not_empty shipment.errors[:shipping_address]
+      assert_includes shipment.errors, :shipping_address
     end
 
     test "is invalid that the shipping_address is invalid" do
@@ -57,8 +66,8 @@ module Checkout
       valid = shipment.validate
 
       assert_equal false, valid
-      assert_not_empty shipment.errors[:shipping_address]
-      assert_not_empty shipment.shipping_address.errors[:line1]
+      assert_includes shipment.errors, :shipping_address
+      assert_includes shipment.shipping_address.errors, :line1
     end
 
     test "is valid when the shipping_address is valid" do
@@ -72,7 +81,7 @@ module Checkout
 
       shipment.validate
 
-      assert_empty shipment.errors[:shipping_address]
+      assert_not_includes shipment.errors, :shipping_address
     end
   end
 end

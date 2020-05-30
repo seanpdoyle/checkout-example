@@ -17,6 +17,9 @@ class VisitorFinalizesTheirOrderTest < ApplicationSystemTestCase
     visit root_path(as: order)
     expand_cart
     click_on translate("orders.order.checkout")
+    within :fieldset, text: "Contact Information" do
+      fill_in label(:checkout_shipment, :email), with: "customer@example.com"
+    end
     within :fieldset, text: "Shipping Address" do
       fill_in_address shipping_address
     end

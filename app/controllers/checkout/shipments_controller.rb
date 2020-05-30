@@ -24,6 +24,7 @@ module Checkout
 
     def checkout_shipment_params
       params.require(:checkout_shipment).permit(
+        :email,
         shipping_address: [
           :line1,
           :line2,

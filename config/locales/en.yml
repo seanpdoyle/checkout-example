@@ -67,6 +67,8 @@ en:
         state: "State"
         postal_code: "Postal Code"
         country: "Country"
+      checkout_shipment:
+        email: "Email Address"
 
     submit:
       checkout_billing:

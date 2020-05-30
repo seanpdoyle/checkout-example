@@ -2,6 +2,21 @@
   <%= form_with(model: checkout) do |form| %>
     <fieldset>
       <legend>
+        Contact Information
+      </legend>
+
+      <div class="field">
+        <%= form.label(:email) %>
+        <%= form.text_field(:email) %>
+
+        <span class="field__errors">
+          <%= form.object.errors[:email].to_sentence %>
+        </span>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>
         Shipping Address
       </legend>
 

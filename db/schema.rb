@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_07_17_153432) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -75,10 +76,11 @@ ActiveRecord::Schema.define(version: 2020_07_17_153432) do
     t.string "token", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.jsonb "shipping_address", default: {}, null: false
     t.jsonb "billing_address", default: {}, null: false
     t.string "stripe_payment_intent_id"
     t.datetime "charged_at"
+    t.citext "email"
+    t.jsonb "shipping_address", default: {}, null: false
     t.index ["token"], name: "index_orders_on_token", unique: true
   end
 
