@@ -11,6 +11,7 @@ module Checkout
       checkout = Checkout::Payment.find(params[:id])
 
       checkout.charge!
+      OrdersMailer.confirmation(checkout.becomes(Order)).deliver_later
       cookies.delete(:order_token)
 
       redirect_to checkout_confirmation_url(checkout)

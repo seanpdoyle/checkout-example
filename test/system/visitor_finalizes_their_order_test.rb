@@ -38,6 +38,7 @@ class VisitorFinalizesTheirOrderTest < ApplicationSystemTestCase
 
     assert_text "Success!"
     assert_text number_to_currency(book.price)
+    assert_enqueued_email_with OrdersMailer, :confirmation, args: Order.last
   end
 
   def fill_in_address(address)
