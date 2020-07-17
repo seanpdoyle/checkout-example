@@ -1,0 +1,43 @@
+ruby_science_description:
+  record: ruby_science (Book)
+  name: description
+  body: >
+    <h2>
+      The reference for writing fantastic Rails applications
+    </h2>
+    <p>
+      You build web applications, and you love Ruby on Rails because it provides a framework for developing applications that are are fast, fun, and easy to change. Over time these applications can become bloated, development slows down, and changes to the codebase become painful.
+    </p>
+    <p>
+      This book was written to help you learn to detect emerging problems in your codebase; we’ll deliver the solutions for fixing them, and maintaining an application that will be fun to work on for years to come.
+    </p>
+
+ruby_science_table_of_contents:
+  record: ruby_science (Book)
+  name: table_of_contents
+  body: >
+    <h3>Table of Contents</h3>
+
+    <p>
+      <b>Introduction</b>
+    </p>
+
+    <p>Code Smells</p>
+
+    <ul>
+      <li>Long Method</li>
+      <li>Large Class</li>
+      <li>Feature Envy</li>
+      <li>Case Statement</li>
+      <li>High Fan-out</li>
+      <li>Shotgun Surgery</li>
+      <li>Divergent Change</li>
+      <li>Long Parameter List</li>
+      <li>Duplicated Code</li>
+      <li>Uncommunicative Name</li>
+      <li>Single Table Inheritance (STI)</li>
+      <li>Parallel Inheritance Hierarchies*</li>
+      <li>Comments</li>
+      <li>Mixin</li>
+      <li>Callback</li>
+    </ul>
