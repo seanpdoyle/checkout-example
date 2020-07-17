@@ -11,14 +11,18 @@
   ">
     <% books.each do |book| %>
       <li>
-        <div class="
+        <%= link_to book_path(book), class: "
           bg-red-100
+          block
           px-8
           py-16
           rounded-lg
-        ">
-          <img src="http://via.placeholder.com/300x400" alt="" class="shadow-md">
-        </div>
+        " do %>
+          <figure>
+            <img src="http://via.placeholder.com/300x400" alt="" class="shadow-md">
+            <figcaption class="sr-only"><%= book.title %></figcaption>
+          </figure>
+        <% end %>
 
         <p class="
           font-semibold
