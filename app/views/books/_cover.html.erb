@@ -1,7 +1,19 @@
 <figure>
-  <img src="http://via.placeholder.com/300x450" width="300" height="450" alt="" class="
-    shadow-md
-    <%= local_assigns.delete(:class) %>
-  ">
+  <%= image_tag(
+    (
+      if cover.attached?
+        cover.variant(resize_and_pad: [300, 450])
+      else
+        "http://via.placeholder.com/300x450"
+      end
+    ),
+    width: 300,
+    height: 450,
+    alt: "",
+    class: class_names(
+      "shadow-md",
+      local_assigns.delete(:class),
+    ),
+  ) %>
   <figcaption class="sr-only"><%= caption %></figcaption>
 </figure>

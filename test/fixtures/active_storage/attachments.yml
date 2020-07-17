@@ -1,0 +1,33 @@
+---
+ruby_science_cover:
+  name: cover
+  record: ruby_science (Book)
+  blob: ruby_science_cover
+maybe_haskell_cover:
+  name: cover
+  record: maybe_haskell (Book)
+  blob: maybe_haskell_cover
+ios_on_rails_cover:
+  name: cover
+  record: ios_on_rails (Book)
+  blob: ios_on_rails_cover
+testing_rails_cover:
+  name: cover
+  record: testing_rails (Book)
+  blob: testing_rails_cover
+geocoding_on_rails_cover:
+  name: cover
+  record: geocoding_on_rails (Book)
+  blob: geocoding_on_rails_cover
+maintaining_open_source_projects_cover:
+  name: cover
+  record: maintaining_open_source_projects (Book)
+  blob: maintaining_open_source_projects_cover
+goal_oriented_git_cover:
+  name: cover
+  record: goal_oriented_git (Book)
+  blob: goal_oriented_git_cover
+domain_name_sanity_cover:
+  name: cover
+  record: domain_name_sanity (Book)
+  blob: domain_name_sanity_cover
