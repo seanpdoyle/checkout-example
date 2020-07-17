@@ -1,4 +1,7 @@
 class Book < ApplicationRecord
+  has_rich_text :description
+  has_rich_text :table_of_contents
+
   def price_in_dollars
     price_in_cents / 100.0
   end
