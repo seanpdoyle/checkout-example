@@ -10,11 +10,19 @@
     md:my-8
     md:text-lg
     text-sm
-    w-full
   ">
     <%= link_to books_path do %>
       <%= translate(".library") %>
     <% end %>
+
+    <%= inline_svg_tag("icons/chevron-right", class: "
+      h-6
+      w-6
+    ") %>
+
+    <span>
+      <%= book.title %>
+    </span>
   </nav>
 
   <article class="
