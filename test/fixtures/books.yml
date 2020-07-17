@@ -1,0 +1,24 @@
+ruby_science:
+  title: "Ruby Science"
+  price_in_cents: 9_99
+maybe_haskell:
+  title: "Maybe Haskell"
+  price_in_cents: 10_00
+ios_on_rails:
+  title: "iOS on Rails"
+  price_in_cents: 15_00
+testing_rails:
+  title: "Testing Rails"
+  price_in_cents: 20_00
+geocoding_on_rails:
+  title: "Geocoding on Rails"
+  price_in_cents: 10_00
+maintaining_open_source_projects:
+  title: "Maintaining Open Source Projects"
+  price_in_cents: 0_00
+goal_oriented_git:
+  title: "Goal-oriented Git"
+  price_in_cents: 0_00
+domain_name_sanity:
+  title: "Domain Name Sanity"
+  price_in_cents: 10_00

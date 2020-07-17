@@ -1,0 +1,46 @@
+<section class="
+  md:mx-24
+  md:my-12
+">
+  <ul class="
+    gap-4
+    grid
+    grid-cols-1
+    md:gap-8
+    md:grid-cols-4
+  ">
+    <% books.each do |book| %>
+      <li>
+        <div class="
+          bg-red-100
+          px-8
+          py-16
+          rounded-lg
+        ">
+          <figure>
+            <img src="http://via.placeholder.com/300x450" width="300" height="450" alt="" class="
+              shadow-md
+            ">
+            <figcaption class="sr-only"><%= book.title %></figcaption>
+          </figure>
+        </div>
+
+        <p class="
+          font-semibold
+          mx-2
+          my-4
+        ">
+          <%= book.title %>
+        </p>
+
+        <p class="
+          font-semibold
+          mx-2
+          my-4
+        ">
+          <%= number_to_currency(book.price_in_dollars) %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</section>
