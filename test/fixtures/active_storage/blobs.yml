@@ -1,0 +1,57 @@
+---
+ruby_science_cover:
+  key: yveawhqf45ia6s285jgo8nb53yay
+  filename: ruby_science.png
+  content_type: image/png
+  service_name: local
+  byte_size: 53489
+  checksum: s2asny1cY2YBfGl5XUz7ng==
+maybe_haskell_cover:
+  key: urdqqp5vhjpx9kdcszdv1dxp77r4
+  filename: maybe_haskell.png
+  content_type: image/png
+  service_name: local
+  byte_size: 63115
+  checksum: fvKV3rTz+pOfBOgwFaJCyA==
+ios_on_rails_cover:
+  key: b1cit8ddzrib23h4q4bty1vl9x5n
+  filename: ios_on_rails.png
+  content_type: image/png
+  service_name: local
+  byte_size: 103627
+  checksum: l9uiaR5iM14C/9Ax1n++IQ==
+testing_rails_cover:
+  key: rmzo3eqxgqpm4irclp2sf54pd045
+  filename: testing_rails.png
+  content_type: image/png
+  service_name: local
+  byte_size: 697132
+  checksum: rD+rXjhnQtuj4BVLmO+Slg==
+geocoding_on_rails_cover:
+  key: 0kc1g00cme3t39i9jv8xel1wgzsk
+  filename: geocoding_on_rails.png
+  content_type: image/png
+  service_name: local
+  byte_size: 1448047
+  checksum: 3BF6BOHdmLjUb5VhoaB5SQ==
+maintaining_open_source_projects_cover:
+  key: rjr318cybn19j4annx10jg93m27s
+  filename: maintaining_open_source_projects.png
+  content_type: image/png
+  service_name: local
+  byte_size: 1768221
+  checksum: FETs5AwUQSZWfwq0ks5mxg==
+goal_oriented_git_cover:
+  key: 2pt1acb36at5c1eizxbxrhtiqog9
+  filename: goal_oriented_git.png
+  content_type: image/png
+  service_name: local
+  byte_size: 72386
+  checksum: 2D6228Zs14hp3eHz8IFcMQ==
+domain_name_sanity_cover:
+  key: 11514p8cmi6plcf5b6jnowbg00io
+  filename: domain_name_sanity.png
+  content_type: image/png
+  service_name: local
+  byte_size: 1519558
+  checksum: tMmP9/myiI+ARpFn+epwUA==
