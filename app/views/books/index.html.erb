@@ -11,19 +11,15 @@
   ">
     <% books.each do |book| %>
       <li>
-        <div class="
+        <%= link_to book_path(book), class: "
           bg-red-100
+          block
           px-8
           py-16
           rounded-lg
-        ">
-          <figure>
-            <img src="http://via.placeholder.com/300x450" width="300" height="450" alt="" class="
-              shadow-md
-            ">
-            <figcaption class="sr-only"><%= book.title %></figcaption>
-          </figure>
-        </div>
+        " do %>
+          <%= render("books/cover", caption: book.title) %>
+        <% end %>
 
         <p class="
           font-semibold

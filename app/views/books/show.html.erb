@@ -1,0 +1,47 @@
+<section class="
+  md:mx-24
+  md:my-12
+">
+  <article class="
+    gap-4
+    grid
+    grid-cols-1
+    md:gap-6
+    md:grid-cols-2
+    md:row-gap-24
+  ">
+    <div class="
+      bg-red-100
+      flex
+      justify-center
+      px-8
+      py-16
+      rounded-lg
+    ">
+      <%= render("books/cover", caption: book.title) %>
+    </div>
+
+    <div class="
+      flex
+      flex-col
+      items-center
+      justify-center
+    ">
+      <h1 class="
+        font-semibold
+        md:text-4xl
+        text-2xl
+      ">
+        <%= book.title %>
+      </h1>
+
+      <p class="
+        font-semibold
+        md:text-2xl
+        text-xl
+      ">
+        <%= number_to_currency(book.price_in_dollars) %>
+      </p>
+    </div>
+  </article>
+</section>
