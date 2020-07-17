@@ -1,0 +1,13 @@
+<%= image_tag(
+  (
+    if cover.attached?
+      cover.variant(resize_and_pad: [300, 450])
+    else
+      "http://via.placeholder.com/300x450"
+    end
+  ),
+  width: 300,
+  height: 450,
+  alt: "",
+  class: "shadow-md",
+) %>
