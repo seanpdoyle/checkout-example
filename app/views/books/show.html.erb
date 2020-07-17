@@ -2,6 +2,21 @@
   md:mx-24
   md:my-12
 ">
+  <nav class="
+    flex
+    flex-row
+    items-center
+    m-4
+    md:my-8
+    md:text-lg
+    text-sm
+    w-full
+  ">
+    <%= link_to books_path do %>
+      <%= translate(".library") %>
+    <% end %>
+  </nav>
+
   <article class="
     gap-4
     grid

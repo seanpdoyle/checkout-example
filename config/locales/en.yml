@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  books:
+    index:
+      title: "Explore our Library"
+    show:
+      library: "Library"
