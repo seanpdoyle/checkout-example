@@ -3,6 +3,8 @@
   justify-between
 ">
   <%= link_to books_path do %>
-    <%= translate("application.navigation.brand") %>
+    <%= inline_svg_tag("logo", title: translate("application.navigation.brand"), class: "
+      h-8
+    ") %>
   <% end %>
 </nav>

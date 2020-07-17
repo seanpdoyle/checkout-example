@@ -3,7 +3,9 @@
   justify-between
 ">
   <%= link_to books_path do %>
-    <%= translate(".brand") %>
+    <%= inline_svg_tag("logo", title: translate(".brand"), class: "
+      h-8
+    ") %>
   <% end %>
 
   <details class="
@@ -22,8 +24,31 @@
       <div class="
         block
         open:hidden
+        relative
       ">
-        <%= translate(".order.open") %>
+        <span class="sr-only"><%= translate(".order.open") %></span>
+        <%= inline_svg_tag("icons/shopping-cart", {
+          class: "
+            h-8
+            stroke-current
+            w-8
+          ",
+        }) %>
+
+        <% if Current.order.line_items.any? %>
+          <%= inline_svg_tag("icons/circle", {
+            class: "
+              absolute
+              fill-current
+              h-2
+              right-0
+              rounded-full
+              text-red-500
+              top-0
+              w-2
+            ",
+          }) %>
+        <% end %>
       </div>
 
       <div class="
@@ -32,7 +57,12 @@
         py-10
         open:block
       ">
-        <%= translate(".order.close") %>
+        <span class="sr-only"><%= translate(".order.close") %></span>
+        <%= inline_svg_tag("icons/x", class: "
+          h-8
+          stroke-current
+          w-8
+        ") %>
       </div>
     </summary>
 

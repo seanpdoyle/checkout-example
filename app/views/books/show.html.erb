@@ -14,6 +14,16 @@
     <%= link_to books_path do %>
       <%= translate(".library") %>
     <% end %>
+
+    <%= inline_svg_tag("icons/chevron-right", class: "
+      h-6
+      stroke-current
+      w-6
+    ") %>
+
+    <span>
+      <%= book.title %>
+    </span>
   </nav>
 
   <article class="

@@ -30,7 +30,12 @@
       ">
         <%= form_with(model: line_item, method: :delete) do |form| %>
           <%= form.button do %>
-            <%= translate(".remove", book: line_item.title) %>
+            <span class="sr-only"><%= translate(".remove", book: line_item.title) %></span>
+            <%= inline_svg_tag("icons/x", class: "
+              h-4
+              stroke-current
+              w-4
+            ") %>
           <% end %>
         <% end %>
       </div>
