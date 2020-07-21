@@ -1,13 +1,19 @@
+<% size = local_assigns.fetch(:size, [300, 450]) %>
+<% width, height = size %>
+
 <%= image_tag(
   (
     if cover.attached?
-      cover.variant(resize_and_pad: [300, 450])
+      cover.variant(resize_and_pad: size)
     else
-      "http://via.placeholder.com/300x450"
+      "http://via.placeholder.com/#{width}x#{height}"
     end
   ),
-  width: 300,
-  height: 450,
+  width: width,
+  height: height,
   alt: "",
-  class: "shadow-md",
+  class: "
+    shadow-md
+    #{local_assigns[:class]}
+  ",
 ) %>

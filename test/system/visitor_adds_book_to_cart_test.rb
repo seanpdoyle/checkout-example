@@ -19,6 +19,6 @@ class VisitorAddsBookToCartTest < ApplicationSystemTestCase
   end
 
   def cart
-    find("details", text: translate("layouts.application.cart"), visible: false)
+    find("details", text: translate("layouts.application.order"), visible: false)
   end
 end
