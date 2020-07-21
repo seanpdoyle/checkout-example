@@ -8,6 +8,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.1.1",
     "@tailwindcss/typography": "^0.2.0",
+    "dialog-polyfill": "^0.5.1",
     "stimulus": "https://github.com/stimulusjs/dev-builds/archive/b8cc8c4/stimulus.tar.gz",
     "tailwindcss": "^1.5.1",
     "trix": "^1.0.0",
