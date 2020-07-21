@@ -49,3 +49,9 @@ en:
     submit:
       line_item:
         create: "Add to Cart"
+
+  orders:
+    order:
+      close: "Close cart"
+      title: "My Cart"
+      total: "Sub-total"

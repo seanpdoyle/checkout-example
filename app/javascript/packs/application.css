@@ -2,6 +2,21 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+details:not([open]) {
+  cursor: pointer;
+}
+
+dialog::backdrop,
+dialog + .backdrop {
+  background-color: black;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
 summary::-webkit-details-marker {
   display: none;
 }
