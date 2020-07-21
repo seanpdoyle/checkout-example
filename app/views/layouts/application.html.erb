@@ -24,9 +24,18 @@
         ") %>
       <% end %>
 
-      <details class="
-        cursor-pointer
-      ">
+      <details
+        id="order"
+        data-controller="
+          order
+        "
+        data-action="
+          toggle->order#toggleDialog
+        "
+        class="
+          cursor-pointer
+        "
+      >
         <summary class="
           list-none
           relative
@@ -56,24 +65,34 @@
         <% end %>
         </summary>
 
-        <div class="
-          bg-white
-          bottom-0
-          cursor-auto
-          fixed
-          h-screen
-          left-0
-          m-0
-          md:bottom-auto
-          md:left-auto
-          md:ml-auto
-          md:p-4
-          md:w-1/4
-          right-0
-          top-0
-        ">
+        <dialog
+          data-action="
+            close->order#closeDetails
+          "
+          data-order-target="dialog"
+          class="
+            bg-white
+            bottom-0
+            cursor-auto
+            fixed
+            flex
+            flex-col
+            h-screen
+            left-0
+            m-0
+            md:bottom-auto
+            md:left-auto
+            md:ml-auto
+            md:w-1/4
+            p-0
+            right-0
+            top-0
+            w-full
+          "
+          open
+        >
           <%= render(Current.order) %>
-        </div>
+        </dialog>
       </details>
     </header>
 

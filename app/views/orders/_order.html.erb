@@ -1,11 +1,74 @@
-<% order.line_items.order(created_at: :desc).includes(:book).each do |line_item| %>
-  <div>
-    <span>
-      <%= line_item.title %>
-    </span>
+<header class="
+  flex
+  items-center
+  justify-between
+  p-8
+">
+  <h1 class="
+    font-bold
+    text-3xl
+  ">
+    <%= translate(".title") %>
+  </h1>
 
-    <span>
-      <%= number_to_currency(line_item.price_in_dollars) %>
-    </span>
+  <form method="dialog">
+    <button type="submit">
+      <%= inline_svg_tag("icons/x", title: translate(".close"), class: "
+        h-6
+        stroke-current
+        w-6
+      ") %>
+    </button>
+  </form>
+</header>
+
+<section class="
+  flex-grow
+  overflow-y-auto
+  p-8
+  space-y-4
+">
+<% order.line_items.order(created_at: :desc).includes(:book).each do |line_item| %>
+  <div class="
+    flex
+    flex-row
+    justify-between
+  ">
+    <div class="
+      bg-red-100
+      flex
+      justify-center
+      px-4
+      py-6
+      rounded-lg
+    ">
+      <%= render("books/cover", cover: line_item.cover, class: "
+        w-12
+        h-18
+      ") %>
+    </div>
+
+    <div class="
+      flex
+      flex-col
+      flex-grow
+      items-center
+      justify-center
+    ">
+      <h1 class="
+        font-semibold
+        text
+      ">
+        <%= line_item.title %>
+      </h1>
+
+      <p class="
+        font-semibold
+        text
+      ">
+        <%= number_to_currency(line_item.price_in_dollars) %>
+      </p>
+    </div>
   </div>
 <% end %>
+</section>
