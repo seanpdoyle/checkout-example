@@ -15,9 +15,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     find("details", text: translate("layouts.application.order"), visible: :all)
   end
 
-  def assert_book(book)
+  def assert_book(book, quantity: 1)
     assert_text book.title
-    assert_text number_to_currency(book.price_in_cents / 100.0)
+    assert_text number_to_currency((book.price_in_cents * quantity) / 100.0)
   end
 
   def assert_no_book(book)

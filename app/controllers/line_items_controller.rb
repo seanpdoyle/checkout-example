@@ -27,6 +27,20 @@ class LineItemsController < ApplicationController
     )
   end
 
+  def update
+    line_item = Current.order.line_items.find(params[:id])
+
+    LineItem.transaction do
+      line_item.update!(line_item_params)
+
+      if line_item.quantity.zero?
+        line_item.destroy!
+      end
+    end
+
+    redirect_back(fallback_location: root_url)
+  end
+
   private
 
   def line_item_params
