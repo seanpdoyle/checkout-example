@@ -31,4 +31,29 @@ class LineItemTest < ActiveSupport::TestCase
       total_in_cents
     )
   end
+
+  test "#increment= increments the quantity with a positive number" do
+    line_item = LineItem.new(quantity: 0)
+
+    line_item.increment = "1"
+
+    assert_equal 1, line_item.quantity
+  end
+
+  test "#increment= decrements the quantity with a negative number" do
+    line_item = LineItem.new(quantity: 2)
+
+    line_item.increment = "-1"
+
+    assert_equal 1, line_item.quantity
+  end
+
+  test "validates quantity is not negative" do
+    line_item = LineItem.new(quantity: -1)
+
+    valid = line_item.validate
+
+    assert_not valid
+    assert_includes line_item.errors, :quantity
+  end
 end
