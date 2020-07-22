@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show] do
     resources :line_items, only: [:create]
   end
-  resources :line_items, only: [:destroy]
+  resources :line_items, only: [:update, :destroy]
 
   root to: redirect("/books")
 end

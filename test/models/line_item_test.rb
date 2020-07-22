@@ -56,4 +56,20 @@ class LineItemTest < ActiveSupport::TestCase
 
     assert_equal ruby_science.price_in_cents * 3, price_in_cents
   end
+
+  test "#increment= increments the quantity with a positive number" do
+    line_item = LineItem.new(quantity: 0)
+
+    line_item.increment = "1"
+
+    assert_equal 1, line_item.quantity
+  end
+
+  test "#increment= decrements the quantity with a negative number" do
+    line_item = LineItem.new(quantity: 2)
+
+    line_item.increment = "-1"
+
+    assert_equal 1, line_item.quantity
+  end
 end

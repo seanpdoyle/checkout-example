@@ -51,7 +51,8 @@ en:
     submit:
       line_item:
         create: "Add to Cart"
-        update: "Remove from Cart"
+        increment: "Add one"
+        decrement: "Remove one"
 
   orders:
     order:

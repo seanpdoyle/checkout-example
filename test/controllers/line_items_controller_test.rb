@@ -50,6 +50,48 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_line_item current_order, ruby_science
   end
 
+  test "#update with a positive increment value increments the LineItem's quantity" do
+    ruby_science = books(:ruby_science)
+    line_item = ruby_science.line_items.new(quantity: 1)
+    current_order = Order.create!(line_items: [line_item])
+    cookies[:order_id] = current_order.signed_id
+
+    patch line_item_path(line_item), params: {
+      line_item: {increment: "1"}
+    }
+
+    assert_response :redirect
+    assert_line_item current_order, ruby_science, quantity: 2
+  end
+
+  test "#update with a negative increment value decrements the LineItem's quantity" do
+    ruby_science = books(:ruby_science)
+    line_item = ruby_science.line_items.new(quantity: 2)
+    current_order = Order.create!(line_items: [line_item])
+    cookies[:order_id] = current_order.signed_id
+
+    patch line_item_path(line_item), params: {
+      line_item: {increment: "-1"}
+    }
+
+    assert_response :redirect
+    assert_line_item current_order, ruby_science, quantity: 1
+  end
+
+  test "#update with a negative increment for a single quantity LineItem destroys it" do
+    ruby_science = books(:ruby_science)
+    line_item = ruby_science.line_items.new(quantity: 1)
+    current_order = Order.create!(line_items: [line_item])
+    cookies[:order_id] = current_order.signed_id
+
+    patch line_item_path(line_item), params: {
+      line_item: {increment: "-1"}
+    }
+
+    assert_response :redirect
+    assert_empty current_order.reload.line_items
+  end
+
   def assert_created_order(&block)
     count = Order.count
 
