@@ -85,6 +85,8 @@ en:
         update: "Continue"
       line_item:
         create: "Add to Cart"
+        decrement: "Remove one"
+        increment: "Add one"
         update: "Remove from Cart"
 
   line_items:

@@ -30,8 +30,7 @@
       ">
         <%= form_with(model: line_item, method: :delete) do |form| %>
           <%= form.button do %>
-            <span class="sr-only"><%= translate(".remove", book: line_item.title) %></span>
-            <%= inline_svg_tag("icons/x", class: "
+            <%= inline_svg_tag("icons/x", title: translate(".remove", book: line_item.title), class: "
               h-4
               stroke-current
               w-4
@@ -67,19 +66,47 @@
           <%= line_item.title %>
         </h1>
 
-        <div class="
-          flex
-          flex-row
-          justify-between
+        <p class="
+          font-semibold
         ">
-          <span><%= line_item.quantity %></span>
+          <%= number_to_currency(line_item.price_in_dollars) %>
+        </p>
+
+        <%= form_with(model: line_item, html: {
+          class: "
+            border-2
+            border-red-100
+            flex
+            flex-row
+            items-center
+            justify-between
+            p-1
+            rounded-full
+          ",
+        }) do |form| %>
+          <%= form.button(name: "line_item[increment]", value: "-1") do %>
+            <%= inline_svg_tag("icons/chevron-left", title: translate("helpers.submit.line_item.decrement"), class: "
+              h-6
+              stroke-current
+              w-6
+            ") %>
+          <% end %>
 
           <span class="
             font-semibold
+            mx-4
           ">
-            <%= number_to_currency(line_item.price_in_dollars) %>
+            <%= line_item.quantity %>
           </span>
-        </div>
+
+          <%= form.button(name: "line_item[increment]", value: "1") do %>
+            <%= inline_svg_tag("icons/chevron-right", title: translate("helpers.submit.line_item.increment"), class: "
+              h-6
+              stroke-current
+              w-6
+            ")%>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -45,9 +45,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     translate(attribute, scope: [:helpers, :label, i18n_key])
   end
 
-  def assert_book(book)
+  def assert_book(book, quantity: 1)
     assert_text book.title
-    assert_text number_to_currency(book.price_in_dollars)
+    assert_text number_to_currency(book.price_in_dollars * quantity)
   end
 
   def assert_no_book(book)
