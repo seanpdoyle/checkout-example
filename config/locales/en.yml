@@ -48,6 +48,9 @@ en:
       notice: "We've removed %{title} from your order."
 
   helpers:
+    label:
+      line_item:
+        increment: "Quantity"
     submit:
       line_item:
         create: "Add to Cart"
