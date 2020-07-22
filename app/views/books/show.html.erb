@@ -67,8 +67,75 @@
         <%= number_to_currency(book.price_in_dollars) %>
       </p>
 
-      <%= form_with(model: [book, book.line_items.build]) do |form| %>
-        <%= form.hidden_field(:increment) %>
+      <%= form_with(model: [book, book.line_items.build], html: {
+        "data-controller": "
+          quantity-form
+        ",
+        class: "
+          flex
+          items-center
+          space-x-4
+        ",
+      }) do |form| %>
+        <div
+          class="
+            border-2
+            border-red-100
+            flex
+            flex-row
+            items-center
+            justify-between
+            px-4
+            py-2
+            rounded-full
+          "
+          data-controller="input-step"
+          data-input-step-enabled-class="input-step-none"
+        >
+          <button
+            type="button"
+            data-action="
+              click->input-step#stepDown
+            "
+            data-input-step-target="button"
+            hidden
+          >
+            <%= inline_svg_tag("icons/chevron-left", title: translate("helpers.submit.line_item.decrement"), class: "
+              h-6
+              stroke-current
+              w-6
+            ") %>
+          </button>
+
+          <%= form.number_field(:increment, {
+            min: 1,
+            class: "
+              font-semibold
+              mx-4
+              text-center
+              w-8
+            ",
+            "data-input-step-target": "input",
+          }) %>
+          <%= form.label(:increment, class: "
+            sr-only
+          ") %>
+
+          <button
+            type="button"
+            data-action="
+              click->input-step#stepUp
+            "
+            data-input-step-target="button"
+            hidden
+          >
+            <%= inline_svg_tag("icons/chevron-right", title: translate("helpers.submit.line_item.increment"), class: "
+              h-6
+              stroke-current
+              w-6
+            ")%>
+          </button>
+        </div>
 
         <%= form.button(class: "
           bg-red-600

@@ -4,8 +4,7 @@ class VisitorDecrementsBookQuantityFromCartTest < ApplicationSystemTestCase
   test "visitor decrements book quantity from cart" do
     ruby_science = books(:ruby_science)
 
-    visit book_path(ruby_science)
-    2.times { click_on submit(:line_item) }
+    add_to_cart ruby_science, increment: 2
     expand_cart { click_on submit(:line_item, :decrement) }
 
     expand_cart do

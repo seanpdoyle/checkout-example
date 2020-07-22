@@ -16,8 +16,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     Capybara.default_max_wait_time = default
   end
 
-  def add_to_cart(book)
+  def add_to_cart(book, increment: 1)
     visit book_path(book)
+    fill_in label(:line_item, :increment), with: increment
     click_on submit(:line_item)
   end
 

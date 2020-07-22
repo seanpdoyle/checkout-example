@@ -20,3 +20,13 @@ summary::-webkit-details-marker {
 [open] .open\:fixed {
   position: fixed;
 }
+
+.input-step-none {
+  -moz-appearance: textfield;
+}
+
+.input-step-none::-webkit-outer-spin-button,
+.input-step-none::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
