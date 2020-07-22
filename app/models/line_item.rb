@@ -21,4 +21,8 @@ class LineItem < ApplicationRecord
   def increment
     1
   end
+
+  def increment
+    1
+  end
 end

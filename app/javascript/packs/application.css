@@ -20,3 +20,13 @@ dialog + .backdrop {
 summary::-webkit-details-marker {
   display: none;
 }
+
+.input-step-none {
+  -moz-appearance: textfield;
+}
+
+.input-step-none::-webkit-outer-spin-button,
+.input-step-none::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

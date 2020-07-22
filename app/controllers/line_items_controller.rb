@@ -44,6 +44,6 @@ class LineItemsController < ApplicationController
   private
 
   def line_item_params
-    params.require(:line_item).permit(:increment)
+    params.fetch(:line_item, {increment: 1}).permit(:increment)
   end
 end
