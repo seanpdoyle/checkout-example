@@ -47,6 +47,25 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_line_item current_order, ruby_science, quantity: 2
   end
 
+  test "#create with an existing LineItem in the current Order combines the quantities" do
+    ruby_science = books(:ruby_science)
+    current_order = orders(:empty)
+    cookies[:order_token] = current_order.token
+    LineItem.create!(
+      book: ruby_science,
+      order: current_order,
+      quantity: 2
+    )
+
+    assert_no_created_order do
+      post book_line_items_path(ruby_science), params: {
+        line_item: {increment: "1"}
+      }
+    end
+
+    assert_line_item current_order, ruby_science, quantity: 3
+  end
+
   test "#create with an Order token referencing a deleted Order" do
     ruby_science = books(:ruby_science)
     cookies[:order_token] = "abc123"
