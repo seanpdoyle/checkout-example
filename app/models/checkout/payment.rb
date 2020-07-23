@@ -23,13 +23,8 @@ module Checkout
         update!(stripe_payment_intent: payment_intent)
       else
         Stripe::PaymentIntent.update(
-<<<<<<< HEAD
-          payment_intent.id,
-          amount: line_items.total_in_cents
-=======
           stripe_payment_intent.id,
-          amount: line_items.total,
->>>>>>> 427cf3f... passing all tests!
+          amount: line_items.total_in_cents
         )
       end
     end

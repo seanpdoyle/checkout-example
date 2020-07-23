@@ -126,7 +126,7 @@
             </form>
           </header>
 
-          <%= render(partial: Current.order) %>
+          <%= render("orders/order", order: Current.order) %>
 
           <footer class="
             bg-red-100
@@ -143,11 +143,11 @@
             <span class="
               font-bold
             ">
-              <%= number_to_currency(order.total_in_dollars) %>
+              <%= number_to_currency(Current.order.total_in_dollars) %>
             </span>
 
-            <% if order.line_items.any? %>
-              <%= link_to new_checkout_shipping_path(order) do %>
+            <% if Current.order.line_items.any? %>
+              <%= link_to new_checkout_shipment_path(Current.order) do %>
                 <%= translate(".checkout") %>
               <% end %>
             <% end %>
