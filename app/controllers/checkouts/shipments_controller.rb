@@ -5,5 +5,9 @@ module Checkouts
 
       render locals: {shipment: shipment}
     end
+
+    def update
+      redirect_to new_order_payment_url(params[:id]), turbolinks: :advance
+    end
   end
 end

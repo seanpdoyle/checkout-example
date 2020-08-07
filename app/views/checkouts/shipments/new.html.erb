@@ -41,20 +41,98 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= tag.div({
+  <%= form_with(model: shipment, html: {
     class: "
       flex
       flex-col
+      items-start
       md:flex-row
     ",
   }) do |form| %>
+    <%= form.hidden_field :country %>
+
     <section class="
       flex-grow
+      mb-8
+      md:mb-auto
+      md:mr-24
+      space-y-4
     ">
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <%= form.label(:name, class: "
+          block
+        ") %>
+        <%= form.text_field(:name, class: "
+            form-input
+        ") %>
+
+        <%= form.label(:email, class: "
+          block
+        ") %>
+        <%= form.email_field(:email, class: "
+            form-input
+        ") %>
+      </fieldset>
+
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <%= form.label(:line1, class: "
+          block
+        ") %>
+        <%= form.text_field(:line1, class: "
+          form-input
+        ") %>
+
+        <%= form.label(:line2, class: "
+          block
+        ") %>
+        <%= form.text_field(:line2, class: "
+          form-input
+        ") %>
+
+        <%= form.label(:city, class: "
+          block
+        ") %>
+        <%= form.text_field(:city, class: "
+          form-input
+        ") %>
+
+        <div class="
+          row-gap-2
+          col-gap-4
+          grid
+          grid-cols-2
+        ">
+          <%= form.label(:state, class: "
+            block
+          ") %>
+          <%= form.label(:postal_code, class: "
+            block
+          ") %>
+
+          <%= form.text_field(:state, class: "
+            form-input
+          ") %>
+          <%= form.text_field(:postal_code, class: "
+              form-input
+          ") %>
+        </div>
+      </fieldset>
     </section>
 
     <section class="
+      md:space-y-8
       md:w-2/6
+      space-y-4
       w-full
     ">
       <aside class="
@@ -185,6 +263,18 @@
           </tfoot>
         </table>
       </aside>
+
+      <%= form.button(class: "
+        bg-red-600
+        hover:bg-red-700
+        px-4
+        py-2
+        rounded-full
+        text-center
+        text-white
+        text-xl
+        w-full
+      ") %>
     </section>
   <% end %>
 </section>
