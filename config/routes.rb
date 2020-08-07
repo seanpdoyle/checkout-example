@@ -5,5 +5,11 @@ Rails.application.routes.draw do
   end
   resources :line_items, only: [:destroy]
 
+  scope module: :checkouts do
+    resources :orders, only: [] do
+      resources :shipments, only: [:new]
+    end
+  end
+
   root to: redirect("/books")
 end

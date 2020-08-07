@@ -43,6 +43,13 @@ en:
     show:
       library: "Library"
 
+  checkouts:
+    shipments:
+      new:
+        checkouts: "Checkout"
+        shipments: "Billing and Shipping"
+        title: "Billing and Shipping Details"
+
   helpers:
     submit:
       line_item:
@@ -57,6 +64,8 @@ en:
 
   orders:
     order:
+      checkout: "Proceed to Checkout"
+      close: "Close cart"
       remove: "Remove %{book} from the cart"
       title: "My Cart"
       total_in_dollars: "Sub-total"
