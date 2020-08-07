@@ -18,82 +18,86 @@
       md:mx-24
       md:my-12
     ">
-      <%= link_to books_path do %>
-        <%= inline_svg_tag("logo", title: translate(".brand"), class: "
-          h-8
-        ") %>
-      <% end %>
-
-      <details
-        id="order"
-        data-controller="
-          order
-        "
-        data-action="
-          toggle->order#toggleDialog
-        "
-        class="
-          cursor-pointer
-        "
-      >
-        <summary class="
-          list-none
-          relative
-        ">
-          <%= inline_svg_tag("icons/shopping-cart", {
-            title: translate(".order"),
-            class: "
-              h-8
-              stroke-current
-              w-8
-            ",
-          }) %>
-
-        <% if Current.order.line_items.any? %>
-          <%= inline_svg_tag("icons/circle", {
-            class: "
-            absolute
-            top-0
-            right-0
-            fill-current
-            h-2
-            rounded-full
-            text-red-500
-            w-2
-            ",
-          }) %>
+      <% if content_for?(:header) %>
+        <%= content_for(:header) %>
+      <% else %>
+        <%= link_to books_path do %>
+          <%= inline_svg_tag("logo", title: translate(".brand"), class: "
+            h-8
+          ") %>
         <% end %>
-        </summary>
 
-        <dialog
+        <details
+          id="order"
+          data-controller="
+            order
+          "
           data-action="
-            close->order#closeDetails
+            toggle->order#toggleDialog
           "
-          data-order-target="dialog"
           class="
-            bg-white
-            bottom-0
-            cursor-auto
-            fixed
-            flex
-            flex-col
-            h-screen
-            left-0
-            m-0
-            md:bottom-auto
-            md:left-auto
-            md:ml-auto
-            md:w-1/4
-            p-0
-            right-0
-            top-0
-            w-full
+            cursor-pointer
           "
-          open
         >
-          <%= render(Current.order) %>
-        </dialog>
-      </details>
+          <summary class="
+            list-none
+            relative
+          ">
+            <%= inline_svg_tag("icons/shopping-cart", {
+              title: translate(".order"),
+              class: "
+                h-8
+                stroke-current
+                w-8
+              ",
+            }) %>
+
+          <% if Current.order.line_items.any? %>
+            <%= inline_svg_tag("icons/circle", {
+              class: "
+              absolute
+              top-0
+              right-0
+              fill-current
+              h-2
+              rounded-full
+              text-red-500
+              w-2
+              ",
+            }) %>
+          <% end %>
+          </summary>
+
+          <dialog
+            data-action="
+              close->order#closeDetails
+            "
+            data-order-target="dialog"
+            class="
+              bg-white
+              bottom-0
+              cursor-auto
+              fixed
+              flex
+              flex-col
+              h-screen
+              left-0
+              m-0
+              md:bottom-auto
+              md:left-auto
+              md:ml-auto
+              md:w-1/4
+              p-0
+              right-0
+              top-0
+              w-full
+            "
+            open
+          >
+            <%= render(Current.order) %>
+          </dialog>
+        </details>
+      <% end %>
     </header>
 
     <main>

@@ -36,6 +36,13 @@ en:
     show:
       library: "Library"
 
+  checkouts:
+    shipments:
+      new:
+        checkouts: "Checkout"
+        shipments: "Billing and Shipping"
+        title: "Billing and Shipping Details"
+
   layouts:
     application:
       brand: "thoughtbooks"
@@ -59,6 +66,7 @@ en:
 
   orders:
     order:
+      checkout: "Proceed to Checkout"
       close: "Close cart"
       remove: "Remove %{book} from the cart"
       title: "My Cart"
