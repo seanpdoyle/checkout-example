@@ -13,18 +13,9 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor checks out with shipping details" do
-    ruby_science = books(:ruby_science)
-    shipment = Shipment.new(
-      name: "Savvy Shopper",
-      email: "shopper@example.com",
-      line1: "1384 Broadway",
-      line2: "Floor 20",
-      city: "New York",
-      state: "NY",
-      postal_code: "10013"
-    )
+    shipment = shipments(:shipment_rails)
 
-    add_to_cart ruby_science
+    shipment.books.each { |book| add_to_cart book }
     checkout
     fill_in label(:shipment, :name), with: shipment.name
     fill_in label(:shipment, :email), with: shipment.email
