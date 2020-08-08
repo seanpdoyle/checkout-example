@@ -37,6 +37,14 @@ en:
       library: "Library"
 
   checkouts:
+    confirmations:
+      show:
+        contents_html:
+          - "We have received your order! Look out for a confirmation email sent to %{email}"
+          - "Feel free to reach out to %{mailto} with any questions."
+          - "Have a great day!"
+        title: "Thank you for your purchase!"
+        call_to_action: "Continue Shopping"
     payments:
       new:
         title: "Payment Details"
@@ -61,6 +69,10 @@ en:
     label:
       line_item:
         increment: "Quantity"
+      payment:
+        card_number: "Card number"
+        card_expiry: "Expiration"
+        card_cvc: "CVC"
       shipment:
         city: "City"
         email: "Email Address"
@@ -71,6 +83,8 @@ en:
         state: "State"
 
     submit:
+      payment:
+        update: "Submit Order"
       shipment:
         update: "Continue"
       line_item:

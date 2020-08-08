@@ -11,7 +11,7 @@ class VisitorAddsMultiplesOfABookToCartTest < ApplicationSystemTestCase
     expand_cart
 
     within cart do
-      assert_book ruby_science
+      assert_book ruby_science, quantity: 2
       assert_total ruby_science.price_in_dollars * 2
     end
   end
@@ -25,7 +25,7 @@ class VisitorAddsMultiplesOfABookToCartTest < ApplicationSystemTestCase
     expand_cart
 
     within cart do
-      assert_book ruby_science
+      assert_book ruby_science, quantity: 3
       assert_total ruby_science.price_in_dollars * 3
     end
   end

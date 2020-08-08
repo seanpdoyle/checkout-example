@@ -1,0 +1,83 @@
+<% content_for :header do %>
+  <%= link_to books_path do %>
+    <%= inline_svg_tag("logo", title: translate("layouts.application.brand"), class: "
+      h-8
+    ") %>
+  <% end %>
+<% end %>
+
+<section class="
+  md:mx-24
+  md:my-12
+  space-y-4
+  md:space-y-8
+">
+  <h1 class="
+    font-semibold
+    md:text-2xl
+  ">
+    <%= translate(".title") %>
+  </h1>
+
+  <div class="
+    flex
+    flex-col
+    items-start
+    md:flex-row
+  ">
+    <section class="
+      flex-grow
+      mb-8
+      md:mb-auto
+      md:mr-24
+      space-y-4
+    ">
+      <div class="
+        md:prose-xl
+        prose
+      ">
+        <% translate(".contents_html", {
+          email: confirmation.email,
+          mailto: mail_to("thoughtbooks@example.com")
+        }).each do |content| %>
+          <p>
+            <%= content %>
+          </p>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="
+      md:space-y-8
+      md:w-2/6
+      space-y-4
+      w-full
+    ">
+      <aside class="
+        bg-red-100
+        md:p-8
+        md:space-y-6
+        p-4
+        rounded-lg
+        space-y-2
+      ">
+        <%= render(confirmation) %>
+      </aside>
+
+      <%= link_to(books_path, class: "
+        bg-red-600
+        block
+        hover:bg-red-700
+        px-4
+        py-2
+        rounded-full
+        text-center
+        text-white
+        text-xl
+        w-full
+      ") do %>
+        <%= translate(".call_to_action") %>
+      <% end %>
+    </section>
+  </div>
+</section>

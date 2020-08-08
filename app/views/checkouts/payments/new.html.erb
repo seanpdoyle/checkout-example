@@ -19,14 +19,14 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= tag.div({
+  <%= form_with(model: payment, html: {
     class: "
       flex
       flex-col
       items-start
       md:flex-row
     ",
-  }) do %>
+  }) do |form| %>
     <section class="
       flex-grow
       mb-8
@@ -34,6 +34,41 @@
       md:mr-24
       space-y-4
     ">
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <%= form.label(:card_number, class: "
+          block
+        ") %>
+        <%= form.text_field(:card_number, class: "
+          form-input
+        ") %>
+
+        <div class="
+          row-gap-2
+          col-gap-4
+          grid
+          grid-cols-2
+        ">
+          <%= form.label(:card_expiry, class: "
+            block
+          ") %>
+          <%= form.label(:card_cvc, class: "
+            block
+          ") %>
+
+          <%= form.text_field(:card_cvc, class: "
+              form-input
+          ") %>
+          <%= form.text_field(:card_expiry, class: "
+            form-input
+          ") %>
+        </div>
+      </fieldset>
+
       <aside class="
         bg-red-100
         md:p-8
@@ -78,6 +113,18 @@
       ">
         <%= render(payment.becomes(Order)) %>
       </aside>
+
+      <%= form.button(class: "
+        bg-red-600
+        hover:bg-red-700
+        px-4
+        py-2
+        rounded-full
+        text-center
+        text-white
+        text-xl
+        w-full
+      ") %>
     </section>
   <% end %>
 </section>

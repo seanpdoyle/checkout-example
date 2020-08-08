@@ -11,11 +11,15 @@ class LineItem < ApplicationRecord
   end
 
   def self.total_in_dollars
-    total_in_cents / 100
+    total_in_cents / 100.0
   end
 
   def price_in_cents
     book.price_in_cents * quantity
+  end
+
+  def price_in_dollars
+    book.price_in_dollars * quantity
   end
 
   def increment=(step)
