@@ -1,0 +1,8 @@
+shipment_rails:
+  city: "New York"
+  email: "shopper@example.com"
+  line1: "1384 Broadway"
+  line2: "Floor 20"
+  name: "Savvy Shopper"
+  postal_code: "10013"
+  state: "NY"

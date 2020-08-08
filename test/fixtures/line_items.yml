@@ -7,3 +7,13 @@ testing_rails_rails:
   order: rails
   book: testing_rails
   quantity: 1
+
+ruby_science_shipment_rails:
+  order: shipment_rails
+  book: ruby_science
+  quantity: 1
+
+testing_rails_shipment_rails:
+  order: shipment_rails
+  book: testing_rails
+  quantity: 1

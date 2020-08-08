@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_012937) do
+ActiveRecord::Schema.define(version: 2020_08_08_040554) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -74,6 +75,14 @@ ActiveRecord::Schema.define(version: 2020_08_08_012937) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.citext "name"
+    t.citext "email"
+    t.citext "line1"
+    t.citext "line2"
+    t.citext "city"
+    t.citext "state"
+    t.citext "postal_code"
+    t.citext "country", default: "US", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
