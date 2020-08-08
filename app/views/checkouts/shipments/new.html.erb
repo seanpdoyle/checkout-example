@@ -34,21 +34,11 @@
         items-stretch
         space-y-2
       ">
-        <%= form.label(:name, class: "
-          block
-        ") %>
-        <%= form.text_field(:name, class: "
-          form-input
-          w-full
-        ") %>
+        <%= render("label", form: form, attribute: :name) %>
+        <%= render("text_field", form: form, attribute: :name) %>
 
-        <%= form.label(:email, class: "
-          block
-        ") %>
-        <%= form.email_field(:email, class: "
-          form-input
-          w-full
-        ") %>
+        <%= render("label", form: form, attribute: :email) %>
+        <%= render("text_field", form: form, attribute: :email, type: :email) %>
       </fieldset>
 
       <fieldset class="
@@ -57,29 +47,14 @@
         items-stretch
         space-y-2
       ">
-        <%= form.label(:line1, class: "
-          block
-        ") %>
-        <%= form.text_field(:line1, class: "
-          form-input
-          w-full
-        ") %>
+        <%= render("label", form: form, attribute: :line1) %>
+        <%= render("text_field", form: form, attribute: :line1) %>
 
-        <%= form.label(:line2, class: "
-          block
-        ") %>
-        <%= form.text_field(:line2, class: "
-          form-input
-          w-full
-        ") %>
+        <%= render("label", form: form, attribute: :line2) %>
+        <%= render("text_field", form: form, attribute: :line2) %>
 
-        <%= form.label(:city, class: "
-          block
-        ") %>
-        <%= form.text_field(:city, class: "
-          form-input
-          w-full
-        ") %>
+        <%= render("label", form: form, attribute: :city) %>
+        <%= render("text_field", form: form, attribute: :city) %>
 
         <div class="
           gap-4
@@ -92,13 +67,8 @@
             items-stretch
             space-y-2
           ">
-            <%= form.label(:state, class: "
-              block
-            ") %>
-            <%= form.text_field(:state, class: "
-              form-input
-              w-full
-            ") %>
+            <%= render("label", form: form, attribute: :state) %>
+            <%= render("text_field", form: form, attribute: :state) %>
           </div>
 
           <div class="
@@ -107,14 +77,8 @@
             items-stretch
             space-y-2
           ">
-            <%= form.label(:postal_code, class: "
-              block
-            ") %>
-
-            <%= form.text_field(:postal_code, class: "
-              form-input
-              w-full
-            ") %>
+            <%= render("label", form: form, attribute: :postal_code) %>
+            <%= render("text_field", form: form, attribute: :postal_code) %>
           </div>
         </div>
       </fieldset>
@@ -134,125 +98,7 @@
         rounded-lg
         space-y-2
       ">
-        <h2 class="
-          font-semibold
-          text-xl
-        ">
-          Order Summary
-        </h2>
-
-        <table class="
-          flex
-          flex-col
-          space-y-2
-          md:space-y-6
-        ">
-          <thead class="
-            space-y-2
-            md:space-y-6
-          ">
-            <tr class="
-              flex
-              justify-between
-            ">
-              <th class="
-                font-light
-                text-gray-600
-              ">
-                Product
-              </th>
-
-              <th scope="col" class="
-                font-light
-                text-gray-600
-              ">
-                Price
-              </th>
-            </tr>
-          </thead>
-
-          <tbody class="
-            space-y-2
-            md:space-y-6
-          ">
-          <% shipment.line_items.each do |line_item| %>
-            <tr class="
-              flex
-              justify-between
-            ">
-              <th scope="row" class="
-                font-normal
-              ">
-                <%= line_item.title %>
-              </th>
-
-              <td class="
-                font-semibold
-              ">
-                <%= number_to_currency(line_item.price_in_dollars) %>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-
-          <tfoot class="
-            space-y-2
-            md:space-y-6
-          ">
-            <tr class="
-              flex
-              justify-between
-            ">
-              <th scope="row" class="
-                font-normal
-              ">
-                Sub-total
-              </th>
-
-              <td class="
-                font-semibold
-              ">
-                <%= number_to_currency(shipment.total_in_dollars) %>
-              </td>
-            </tr>
-
-            <tr class="
-              flex
-              justify-between
-            ">
-              <th scope="row" class="
-                font-normal
-              ">
-                Shipping
-              </th>
-
-              <td class="
-                font-semibold
-              ">
-                Free shipping
-              </td>
-            </tr>
-
-            <tr class="
-              flex
-              justify-between
-              py-4
-              md:py-6
-            ">
-              <th scope="row" class="
-                font-normal
-              ">
-                Total
-              </th>
-
-              <td class="
-                font-semibold
-              ">
-                <%= number_to_currency(shipment.total_in_dollars) %>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+        <%= render(shipment.becomes(Order)) %>
       </aside>
 
       <%= form.button(class: "
