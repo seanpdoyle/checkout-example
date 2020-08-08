@@ -11,14 +11,14 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= tag.div({
+  <%= form_with(model: payment, html: {
     class: "
       flex
       flex-col
-      items-start
+      items-stretch
       md:flex-row
     ",
-  }) do %>
+  }) do |form| %>
     <section class="
       flex-grow
       mb-8
@@ -26,6 +26,46 @@
       md:mr-24
       space-y-4
     ">
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <% with_options form: form, attribute: :card_number do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field") %>
+        <% end %>
+
+        <div class="
+          gap-4
+          grid
+          md:grid-cols-2
+        ">
+          <div class="
+            flex
+            flex-col
+            flex-grow
+            items-stretch
+            space-y-2
+          ">
+            <%= render("label", form: form, attribute: :card_expiry) %>
+            <%= render("text_field", form: form, attribute: :card_expiry) %>
+          </div>
+
+          <div class="
+            flex
+            flex-col
+            flex-grow
+            items-stretch
+            space-y-2
+          ">
+            <%= render("label", form: form, attribute: :card_cvc) %>
+            <%= render("text_field", form: form, attribute: :card_cvc) %>
+          </div>
+        </div>
+      </fieldset>
+
       <aside class="
         bg-red-100
         md:p-8
@@ -70,6 +110,18 @@
       ">
         <%= render(payment.becomes(Order)) %>
       </aside>
+
+      <%= form.button(class: "
+        bg-red-600
+        hover:bg-red-700
+        px-4
+        py-2
+        rounded-full
+        text-center
+        text-white
+        text-xl
+        w-full
+      ") %>
     </section>
   <% end %>
 </section>

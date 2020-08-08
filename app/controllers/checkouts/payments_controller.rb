@@ -5,5 +5,11 @@ module Checkouts
 
       render locals: {payment: payment}
     end
+
+    def update
+      payment = Payment.find(params[:id])
+
+      redirect_to confirmation_url(payment.becomes(Order).signed_id), turbolinks: :advance
+    end
   end
 end

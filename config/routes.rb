@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :payments, only: [:new]
     end
 
+    resources :confirmations, only: [:show]
+    resources :payments, only: [:update]
     resources :shipments, only: [:update]
   end
 

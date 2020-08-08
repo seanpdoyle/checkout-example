@@ -17,14 +17,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
 
     shipment.books.each { |book| add_to_cart book }
     checkout
-    fill_in label(:shipment, :name), with: shipment.name
-    fill_in label(:shipment, :email), with: shipment.email
-    fill_in label(:shipment, :line1), with: shipment.line1
-    fill_in label(:shipment, :line2), with: shipment.line2
-    fill_in label(:shipment, :city), with: shipment.city
-    fill_in label(:shipment, :state), with: shipment.state
-    fill_in label(:shipment, :postal_code), with: shipment.postal_code
-    click_on submit(:shipment, :update)
+    submit_shipment_form(shipment)
 
     assert_text translate("checkouts.payments.new.title")
     assert_text shipment.name
@@ -33,10 +26,38 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     assert_total shipment.total_in_dollars
   end
 
+  test "visitor submits payment for an order" do
+    shipment = shipments(:shipment_rails)
+
+    shipment.books.each { |book| add_to_cart book }
+    checkout
+    submit_shipment_form(shipment)
+    fill_in label(:payment, :card_number), with: 4242_4242_4242_4242
+    fill_in label(:payment, :card_expiry), with: 3_30
+    fill_in label(:payment, :card_cvc), with: 737
+    click_on submit(:payment, :update)
+
+    assert_text translate("checkouts.confirmations.show.title")
+    assert_text translate("checkouts.confirmations.show.call_to_action")
+    assert_text shipment.email
+    assert_total shipment.total_in_dollars
+  end
+
   def checkout
     expand_cart
 
     click_on translate("orders.order.checkout")
+  end
+
+  def submit_shipment_form(shipment)
+    fill_in label(:shipment, :name), with: shipment.name
+    fill_in label(:shipment, :email), with: shipment.email
+    fill_in label(:shipment, :line1), with: shipment.line1
+    fill_in label(:shipment, :line2), with: shipment.line2
+    fill_in label(:shipment, :city), with: shipment.city
+    fill_in label(:shipment, :state), with: shipment.state
+    fill_in label(:shipment, :postal_code), with: shipment.postal_code
+    click_on submit(:shipment, :update)
   end
 
   def assert_address(address)

@@ -20,6 +20,10 @@ class LineItem < ApplicationRecord
     book.price_in_cents * quantity
   end
 
+  def price_in_dollars
+    book.price_in_dollars * quantity
+  end
+
   def increment=(step)
     self.quantity = quantity + step.to_i
   end
