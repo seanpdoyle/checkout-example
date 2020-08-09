@@ -32,9 +32,9 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     shipment.books.each { |book| add_to_cart book }
     checkout
     submit_shipment_form(shipment)
-    fill_in label(:payment, :card_number), with: 4242_4242_4242_4242
-    fill_in label(:payment, :card_expiry), with: 03_30
-    fill_in label(:payment, :card_cvc), with: 737
+    fill_in_stripe label(:payment, :card_number), with: 4242_4242_4242_4242
+    fill_in_stripe label(:payment, :card_expiry), with: 3_30
+    fill_in_stripe label(:payment, :card_cvc), with: 737
     click_on submit(:payment, :update)
 
     assert_text translate("checkouts.confirmations.show.title")
@@ -64,6 +64,13 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     fill_in label(:shipment, :state), with: shipment.state
     fill_in label(:shipment, :postal_code), with: shipment.postal_code
     click_on submit(:shipment, :update)
+  end
+
+  def fill_in_stripe(locator, *arguments)
+    label = find("label", text: locator)
+    input = find_by_id(label["for"])
+
+    within_frame(input.find("iframe")) { fill_in(*arguments) }
   end
 
   def label(i18n_key, attribute)

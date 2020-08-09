@@ -1,0 +1,15 @@
+<%=
+  payment.slice(
+    :email,
+    :name,
+  ).merge(
+    address: payment.slice(
+      :city,
+      :country,
+      :line1,
+      :line2,
+      :postal_code,
+      :state,
+    )
+  ).to_json
+%>

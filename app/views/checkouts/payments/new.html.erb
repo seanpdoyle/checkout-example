@@ -26,7 +26,14 @@
       items-start
       md:flex-row
     ",
+    "data-action": "submit->stripe#confirmCardPayment",
+    "data-controller": "stripe",
+    "data-stripe-client-secret-value": payment.stripe_payment_intent.client_secret,
+    "data-stripe-publishable-key-value": payment.stripe_publishable_key,
+    "data-stripe-billing-details-value": render(partial: payment, formats: :json),
   }) do |form| %>
+    <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod", required: true) %>
+
     <section class="
       flex-grow
       mb-8
@@ -43,7 +50,7 @@
         <%= form.label(:card_number, class: "
           block
         ") %>
-        <%= form.text_field(:card_number, class: "
+        <%= tag.div(id: :payment_card_number, "data-stripe-target": :cardNumber, class: "
           form-input
         ") %>
 
@@ -60,10 +67,10 @@
             block
           ") %>
 
-          <%= form.text_field(:card_cvc, class: "
-              form-input
+          <%= tag.div(id: :payment_card_expiry, "data-stripe-target": :cardExpiry, class: "
+            form-input
           ") %>
-          <%= form.text_field(:card_expiry, class: "
+          <%= tag.div(id: :payment_card_cvc, "data-stripe-target": :cardCvc, class: "
             form-input
           ") %>
         </div>
