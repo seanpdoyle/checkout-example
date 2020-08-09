@@ -1,0 +1,7 @@
+<%= tag.div(
+  id: "#{form.object_name}_#{attribute}",
+  class: "
+    form-input
+  ",
+  **local_assigns.except(:form, :attribute),
+) %>

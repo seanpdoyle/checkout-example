@@ -1,0 +1,12 @@
+default: &default
+  api_key: "<%= Rails.application.credentials.stripe[:api_key] %>"
+  publishable_key: "pk_test_UFqLF0LafmuA4RXizsCmC0EH00biRYZcFZ"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

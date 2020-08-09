@@ -4,6 +4,10 @@ class Order < ApplicationRecord
 
   validates :line_items, presence: true
 
+  def total_in_cents
+    line_items.total_in_cents
+  end
+
   def total_in_dollars
     line_items.total_in_dollars
   end
