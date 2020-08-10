@@ -32,7 +32,7 @@
     "data-stripe-publishable-key-value": payment.stripe_publishable_key,
     "data-stripe-billing-details-value": render(partial: payment, formats: :json),
   }) do |form| %>
-    <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod", required: true) %>
+    <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod") %>
 
     <section class="
       flex-grow

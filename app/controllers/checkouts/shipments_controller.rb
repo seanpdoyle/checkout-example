@@ -9,7 +9,13 @@ module Checkouts
     def update
       shipment = Shipment.find(params[:id])
 
-      shipment.update!(shipment_params)
+      shipment.transaction do
+        shipment.update!(shipment_params)
+
+        if shipment.stripe_payment_intent_id.nil?
+          shipment.prepare_for_payment!
+        end
+      end
 
       redirect_to new_order_payment_url(shipment), turbolinks: :advance
     end
