@@ -26,7 +26,7 @@
       submit->stripe#confirmCardPayment
     ",
   }) do |form| %>
-    <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod", required: true) %>
+    <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod") %>
 
     <section class="
       flex-grow
