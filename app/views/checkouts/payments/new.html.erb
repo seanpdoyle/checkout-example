@@ -26,7 +26,11 @@
       items-start
       md:flex-row
     ",
-    "data-action": "submit->stripe#confirmCardPayment",
+    "data-action": "
+      submit->stripe#clearErrors
+      submit->stripe#confirmCardPayment
+      stripe:error->stripe#renderError
+    ",
     "data-controller": "stripe",
     "data-stripe-client-secret-value": payment.stripe_payment_intent.client_secret,
     "data-stripe-publishable-key-value": payment.stripe_publishable_key,
@@ -50,9 +54,8 @@
         <%= form.label(:card_number, class: "
           block
         ") %>
-        <%= tag.div(id: :payment_card_number, "data-stripe-target": :cardNumber, class: "
-          form-input
-        ") %>
+        <%= render("stripe_field", id: :payment_card_number, "data-stripe-target": :cardNumber) %>
+        <%= render("errors", form: form, attribute: :card_number, "data-stripe-target": :cardNumberErrors) %>
 
         <div class="
           row-gap-2
@@ -67,12 +70,11 @@
             block
           ") %>
 
-          <%= tag.div(id: :payment_card_expiry, "data-stripe-target": :cardExpiry, class: "
-            form-input
-          ") %>
-          <%= tag.div(id: :payment_card_cvc, "data-stripe-target": :cardCvc, class: "
-            form-input
-          ") %>
+          <%= render("stripe_field", id: :payment_card_expiry, "data-stripe-target": :cardExpiry) %>
+          <%= render("stripe_field", id: :payment_card_cvc, "data-stripe-target": :cardCvc) %>
+
+          <%= render("errors", form: form, attribute: :card_expiry, "data-stripe-target": :cardExpiryErrors) %>
+          <%= render("errors", form: form, attribute: :card_cvc, "data-stripe-target": :cardCvcErrors) %>
         </div>
       </fieldset>
 

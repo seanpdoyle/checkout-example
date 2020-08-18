@@ -1,5 +1,9 @@
-<p id="<%= form.object_name %>_<%= attribute %>_errors" class="
-  text-red-500
-">
+<%= tag.p(
+  id: [form.object_name, attribute, :errors].join("_"),
+  class: "
+    text-red-500
+  ",
+  **local_assigns.except(:form, :attribute)
+) do %>
   <%= form.object.errors[attribute].to_sentence %>
-</p>
+<% end %>

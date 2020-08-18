@@ -1,0 +1,8 @@
+<%= tag.div(
+  id: id,
+  aria: { describedby: "#{id}_errors" },
+  class: "
+    form-input
+  ",
+  **local_assigns.except(:id),
+) %>
