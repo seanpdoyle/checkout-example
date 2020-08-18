@@ -36,9 +36,11 @@
       ">
         <%= render("label", form: form, attribute: :name) %>
         <%= render("text_field", form: form, attribute: :name) %>
+        <%= render("errors", form: form, attribute: :name) %>
 
         <%= render("label", form: form, attribute: :email) %>
         <%= render("text_field", form: form, attribute: :email, type: :email) %>
+        <%= render("errors", form: form, attribute: :email) %>
       </fieldset>
 
       <fieldset class="
@@ -49,12 +51,15 @@
       ">
         <%= render("label", form: form, attribute: :line1) %>
         <%= render("text_field", form: form, attribute: :line1) %>
+        <%= render("errors", form: form, attribute: :line1) %>
 
         <%= render("label", form: form, attribute: :line2) %>
         <%= render("text_field", form: form, attribute: :line2) %>
+        <%= render("errors", form: form, attribute: :line2) %>
 
         <%= render("label", form: form, attribute: :city) %>
         <%= render("text_field", form: form, attribute: :city) %>
+        <%= render("errors", form: form, attribute: :city) %>
 
         <div class="
           gap-4
@@ -69,6 +74,7 @@
           ">
             <%= render("label", form: form, attribute: :state) %>
             <%= render("text_field", form: form, attribute: :state) %>
+            <%= render("errors", form: form, attribute: :state) %>
           </div>
 
           <div class="
@@ -79,6 +85,7 @@
           ">
             <%= render("label", form: form, attribute: :postal_code) %>
             <%= render("text_field", form: form, attribute: :postal_code) %>
+            <%= render("errors", form: form, attribute: :postal_code) %>
           </div>
         </div>
       </fieldset>

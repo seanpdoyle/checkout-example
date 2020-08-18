@@ -7,8 +7,9 @@ class VisitorRemovesBooksFromCartTestTest < ApplicationSystemTestCase
 
     add_to_cart ruby_science
     add_to_cart testing_rails
-    expand_cart
-    click_on translate("orders.order.remove", book: ruby_science.title)
+    expand_cart do
+      click_on translate("orders.order.remove", book: ruby_science.title)
+    end
 
     assert_text removed_book_flash(ruby_science)
     expand_cart do

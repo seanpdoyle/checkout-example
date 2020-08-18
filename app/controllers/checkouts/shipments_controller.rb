@@ -10,15 +10,19 @@ module Checkouts
       shipment = Shipment.find(params[:id])
       shipment.assign_attributes(shipment_params)
 
-      shipment.transaction do
-        shipment.save!
+      if shipment.valid?
+        shipment.transaction do
+          shipment.save!
 
-        if shipment.stripe_payment_intent_id.nil?
-          shipment.prepare_for_payment!
+          if shipment.stripe_payment_intent_id.nil?
+            shipment.prepare_for_payment!
+          end
         end
-      end
 
-      redirect_to new_order_payment_url(shipment), turbolinks: :advance
+        redirect_to new_order_payment_url(shipment), turbolinks: :advance
+      else
+        render :new, status: :unprocessable_entity, locals: {shipment: shipment}
+      end
     end
 
     private

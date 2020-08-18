@@ -29,6 +29,23 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     assert_total shipment.total_in_dollars
   end
 
+  test "visitor submits invalid shipping details" do
+    ruby_science = books(:ruby_science)
+
+    add_to_cart ruby_science
+    checkout
+    click_on submit(:shipment, :update)
+
+    assert_text translate("errors.messages.blank")
+    assert_field label(:shipment, :name)
+    assert_field label(:shipment, :email)
+    assert_field label(:shipment, :line1)
+    assert_field label(:shipment, :line2)
+    assert_field label(:shipment, :city)
+    assert_field label(:shipment, :state)
+    assert_field label(:shipment, :postal_code)
+  end
+
   test "visitor submits payment for an order" do
     shipment = shipments(:shipment_rails)
 
