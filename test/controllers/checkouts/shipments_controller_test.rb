@@ -51,4 +51,14 @@ class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal order.reload.stripe_payment_intent_id, original_payment_intent.id
   end
+
+  test "#update rejects an invalid request" do
+    order = orders(:rails)
+
+    patch shipment_path(order), params: {
+      shipment: Shipment.new.attributes
+    }
+
+    assert_response :unprocessable_entity
+  end
 end
