@@ -24,6 +24,8 @@
     "data-stripe-billing-details-value": render(partial: payment, formats: :json),
     "data-action": "
       submit->stripe#confirmCardPayment
+      submit->stripe#clearErrors
+      stripe:error->stripe#renderError
     ",
   }) do |form| %>
     <%= form.hidden_field(:stripe_payment_method, "data-stripe-target": "paymentMethod") %>
@@ -44,6 +46,7 @@
         <% with_options form: form, attribute: :card_number do |field| %>
           <%= field.render("label") %>
           <%= field.render("text_field", "data-stripe-target": :cardNumber) %>
+          <%= field.render("errors", "data-stripe-target": :cardNumberErrors) %>
         <% end %>
 
         <div class="
@@ -60,6 +63,7 @@
           ">
             <%= render("label", form: form, attribute: :card_expiry) %>
             <%= render("text_field", form: form, attribute: :card_expiry, "data-stripe-target": :cardExpiry) %>
+            <%= render("errors", form: form, attribute: :card_expiry, "data-stripe-target": :cardExpiryErrors) %>
           </div>
 
           <div class="
@@ -71,6 +75,7 @@
           ">
             <%= render("label", form: form, attribute: :card_cvc) %>
             <%= render("text_field", form: form, attribute: :card_cvc, "data-stripe-target": :cardCvc) %>
+            <%= render("errors", form: form, attribute: :card_cvc, "data-stripe-target": :cardCvcErrors) %>
           </div>
         </div>
       </fieldset>

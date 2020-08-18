@@ -43,10 +43,55 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     assert_total shipment.total_in_dollars
   end
 
-  def checkout
-    expand_cart
+  test "visitor is notified when a payment submission is declined" do
+    shipment = shipments(:shipment_rails)
 
-    click_on translate("orders.order.checkout")
+    shipment.books.each { |book| add_to_cart book }
+    checkout
+    submit_shipment_form(shipment)
+    fill_in_stripe label(:payment, :card_number), with: 4000_0000_0000_0002
+    fill_in_stripe label(:payment, :card_expiry), with: 3_30
+    fill_in_stripe label(:payment, :card_cvc), with: 737
+    click_on submit(:payment, :update)
+
+    assert_no_text translate("checkouts.confirmations.show.title")
+    assert_describedby label(:payment, :card_number), "Your card was declined."
+  end
+
+  test "visitor is notified when a payment submission has an expired card" do
+    shipment = shipments(:shipment_rails)
+
+    shipment.books.each { |book| add_to_cart book }
+    checkout
+    submit_shipment_form(shipment)
+    fill_in_stripe label(:payment, :card_number), with: 4000_0000_0000_0069
+    fill_in_stripe label(:payment, :card_expiry), with: 3_30
+    fill_in_stripe label(:payment, :card_cvc), with: 737
+    click_on submit(:payment, :update)
+
+    assert_no_text translate("checkouts.confirmations.show.title")
+    assert_describedby label(:payment, :card_expiry), "Your card has expired."
+  end
+
+  test "visitor is notified when a payment submission's card verification check fails" do
+    shipment = shipments(:shipment_rails)
+
+    shipment.books.each { |book| add_to_cart book }
+    checkout
+    submit_shipment_form(shipment)
+    fill_in_stripe label(:payment, :card_number), with: 4000_0000_0000_0101
+    fill_in_stripe label(:payment, :card_expiry), with: 3_30
+    fill_in_stripe label(:payment, :card_cvc), with: 737
+    click_on submit(:payment, :update)
+
+    assert_no_text translate("checkouts.confirmations.show.title")
+    assert_describedby label(:payment, :card_cvc), "Your card's security code is incorrect."
+  end
+
+  def checkout
+    expand_cart do
+      click_on translate("orders.order.checkout")
+    end
   end
 
   def submit_shipment_form(shipment)
@@ -60,11 +105,25 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
     click_on submit(:shipment, :update)
   end
 
+  def assert_describedby(locator, text)
+    input = find_stripe_field(locator)
+    described_by_element = find_by_id(input["aria-describedby"])
+
+    within described_by_element do
+      assert_text text
+    end
+  end
+
   def fill_in_stripe(locator, *arguments)
-    label = find("label", text: locator)
-    input = find_by_id(label["for"])
+    input = find_stripe_field(locator)
 
     within_frame(input.find("iframe")) { fill_in(*arguments) }
+  end
+
+  def find_stripe_field(locator)
+    label = find("label", text: locator)
+
+    find_by_id(label["for"])
   end
 
   def assert_address(address)
