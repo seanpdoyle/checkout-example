@@ -70,6 +70,11 @@
         <%= form.text_field(:name, class: "
             form-input
         ") %>
+        <p class="
+          text-red-500
+        ">
+          <%= shipment.errors[:name].to_sentence %>
+        </p>
 
         <%= form.label(:email, class: "
           block
@@ -77,6 +82,11 @@
         <%= form.email_field(:email, class: "
             form-input
         ") %>
+        <p class="
+          text-red-500
+        ">
+          <%= shipment.errors[:email].to_sentence %>
+        </p>
       </fieldset>
 
       <fieldset class="
@@ -91,6 +101,11 @@
         <%= form.text_field(:line1, class: "
           form-input
         ") %>
+        <p class="
+          text-red-500
+        ">
+          <%= shipment.errors[:line1].to_sentence %>
+        </p>
 
         <%= form.label(:line2, class: "
           block
@@ -98,6 +113,11 @@
         <%= form.text_field(:line2, class: "
           form-input
         ") %>
+        <p class="
+          text-red-500
+        ">
+          <%= shipment.errors[:line2].to_sentence %>
+        </p>
 
         <%= form.label(:city, class: "
           block
@@ -105,6 +125,11 @@
         <%= form.text_field(:city, class: "
           form-input
         ") %>
+        <p class="
+          text-red-500
+        ">
+          <%= shipment.errors[:city].to_sentence %>
+        </p>
 
         <div class="
           row-gap-2
@@ -120,11 +145,22 @@
           ") %>
 
           <%= form.text_field(:state, class: "
-            form-input
-          ") %>
-          <%= form.text_field(:postal_code, class: "
               form-input
           ") %>
+          <%= form.text_field(:postal_code, class: "
+            form-input
+          ") %>
+
+          <p class="
+            text-red-500
+          ">
+            <%= shipment.errors[:state].to_sentence %>
+          </p>
+          <p class="
+            text-red-500
+          ">
+            <%= shipment.errors[:postal_code].to_sentence %>
+          </p>
         </div>
       </fieldset>
     </section>
