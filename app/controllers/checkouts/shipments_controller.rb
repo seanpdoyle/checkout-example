@@ -1,7 +1,7 @@
 module Checkouts
   class ShipmentsController < ApplicationController
     def new
-      shipment = Shipment.find(params[:order_id])
+      shipment = find_order.becomes(Shipment)
 
       render locals: {shipment: shipment}
     end
