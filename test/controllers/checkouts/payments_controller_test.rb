@@ -17,5 +17,6 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
     patch payment_path(order)
 
     assert_redirected_to confirmation_url(order.becomes(Order).signed_id)
+    assert_predicate cookies[:order_id], :blank?
   end
 end
