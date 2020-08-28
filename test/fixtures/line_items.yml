@@ -1,3 +1,13 @@
+maybe_haskell_tools:
+  order: tools
+  book: maybe_haskell
+  quantity: 1
+
+goal_oriented_git_tools:
+  order: tools
+  book: goal_oriented_git
+  quantity: 1
+
 ruby_science_rails:
   order: rails
   book: ruby_science

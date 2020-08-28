@@ -4,6 +4,15 @@ require "test_helpers/stripe_test_helpers"
 class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
   include StripeTestHelpers
 
+  test "#new raises ActiveRecord::RecordNotFound when the Order is not in the session" do
+    current_order, other_order = orders(:rails, :tools)
+    cookies[:order_id] = current_order.signed_id
+
+    assert_raises ActiveRecord::RecordNotFound do
+      get new_order_payment_path(other_order)
+    end
+  end
+
   test "#update marks the Order as paid" do
     freeze_time do
       order = prepare_for_payment! shipments(:shipment_rails)

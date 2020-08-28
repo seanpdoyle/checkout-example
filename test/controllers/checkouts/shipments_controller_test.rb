@@ -2,6 +2,15 @@ require "test_helper"
 require "minitest/autorun"
 
 class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
+  test "#new raises ActiveRecord::RecordNotFound when the Order is not in the session" do
+    current_order, other_order = orders(:rails, :tools)
+    cookies[:order_id] = current_order.signed_id
+
+    assert_raises ActiveRecord::RecordNotFound do
+      get new_order_shipment_path(other_order)
+    end
+  end
+
   test "#update for an existing Order writes the Checkout attributes" do
     order = orders(:rails)
     shipment = shipments(:shipment_rails)

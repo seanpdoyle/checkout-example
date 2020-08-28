@@ -1,7 +1,7 @@
 module Checkouts
   class PaymentsController < ApplicationController
     def new
-      payment = Payment.find(params[:order_id])
+      payment = find_order.becomes(Payment)
 
       render locals: {payment: payment}
     end
