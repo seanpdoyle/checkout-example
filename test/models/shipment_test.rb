@@ -1,6 +1,9 @@
 require "test_helper"
+require "test_helpers/active_model_helpers"
 
 class ShipmentTest < ActiveSupport::TestCase
+  include ActiveModelHelpers
+
   test "invalid without any LineItem records" do
     assert_validation_errors :line_items, Shipment.new
   end
@@ -47,16 +50,5 @@ class ShipmentTest < ActiveSupport::TestCase
     country = shipment.country
 
     assert_equal "US", country
-  end
-
-  def assert_validation_errors(attribute, record)
-    assert_not record.validate
-    assert_includes record.errors, attribute
-  end
-
-  def assert_no_validation_errors(attribute, record)
-    record.validate
-
-    assert_not_includes record.errors, attribute
   end
 end
