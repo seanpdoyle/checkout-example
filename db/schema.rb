@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_143428) do
+ActiveRecord::Schema.define(version: 2020_08_29_221834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_08_10_143428) do
     t.integer "quantity", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "paid_at"
+    t.integer "paid_in_cents", default: 0, null: false
     t.index ["book_id", "order_id"], name: "index_line_items_on_book_id_and_order_id", unique: true
     t.index ["book_id"], name: "index_line_items_on_book_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
@@ -85,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_08_10_143428) do
     t.citext "country", default: "US", null: false
     t.string "currency", default: "usd", null: false
     t.string "stripe_payment_intent_id"
+    t.datetime "paid_at"
+    t.integer "paid_in_cents", default: 0, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

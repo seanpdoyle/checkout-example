@@ -9,7 +9,9 @@ module Checkouts
     def update
       payment = Payment.find(params[:id])
 
-      redirect_to confirmation_url(payment.signed_id), turbolinks: :advance
+      confirmation = payment.paid!
+
+      redirect_to confirmation_url(confirmation.signed_id), turbolinks: :advance
     end
   end
 end

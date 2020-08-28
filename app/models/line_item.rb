@@ -29,4 +29,15 @@ class LineItem < ApplicationRecord
   def increment
     1
   end
+
+  def paid?
+    paid_at?
+  end
+
+  def paid!
+    update!(
+      paid_at: Time.current,
+      paid_in_cents: price_in_cents
+    )
+  end
 end
