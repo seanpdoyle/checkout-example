@@ -1,11 +1,47 @@
 require "test_helper"
+require "test_helpers/active_model_helpers"
+require "test_helpers/stripe_test_helpers"
 
 class PaymentTest < ActiveSupport::TestCase
+  include ActiveModelHelpers
+  include StripeTestHelpers
+
+  test "validates Shipment attributes" do
+    assert_validation_errors :email, Payment.new
+  end
+
+  test "invalid when the Order has not been prepared for payment" do
+    assert_validation_errors :stripe_payment_intent_id, Payment.new
+  end
+
+  test "validates the provided stripe_payment_method matches Stripe's value" do
+    payment = Payment.new(stripe_payment_method: "pm_123")
+
+    stub_payment_method(payment.stripe_payment_method) do
+      assert_no_validation_errors :stripe_payment_method, payment
+    end
+  end
+
+  test "invalid without stripe_payment_method matching Stripe's value" do
+    payment = Payment.new(
+      stripe_payment_intent_id: "pi_visa",
+      stripe_payment_method: "junk"
+    )
+
+    stub_payment_method("pm_visa") do
+      assert_validation_errors :stripe_payment_method, payment
+    end
+  end
+
   test "#paid! marks paid_at to now" do
     freeze_time do
       payment = prepare_for_payment! shipments(:shipment_rails)
 
-      payment.paid!
+      stub_payment_method "pm_123" do |payment_method|
+        payment.stripe_payment_method = payment_method
+
+        payment.paid!
+      end
 
       assert_equal Time.current, payment.reload.paid_at
     end
@@ -34,11 +70,5 @@ class PaymentTest < ActiveSupport::TestCase
     confirmation = payment.paid!
 
     assert_equal Order, confirmation.class
-  end
-
-  def prepare_for_payment!(shipment)
-    shipment.prepare_for_payment!
-
-    shipment.becomes(Payment)
   end
 end

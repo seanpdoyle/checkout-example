@@ -6,6 +6,16 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
 
+  def with_wait_time(seconds: Capybara.default_max_wait_time)
+    default = Capybara.default_max_wait_time
+
+    Capybara.default_max_wait_time = seconds
+
+    yield
+  ensure
+    Capybara.default_max_wait_time = default
+  end
+
   def add_to_cart(book)
     visit book_path(book)
     click_on submit(:line_item)
