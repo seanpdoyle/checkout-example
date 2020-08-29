@@ -13,6 +13,15 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "#new redirects to collect Shipment information when it is missing" do
+    current_order = orders(:rails)
+    cookies[:order_id] = current_order.signed_id
+
+    get new_order_payment_path(current_order)
+
+    assert_redirected_to new_order_shipment_path(current_order)
+  end
+
   test "#update marks the Order as paid" do
     freeze_time do
       order = prepare_for_payment! shipments(:shipment_rails)
