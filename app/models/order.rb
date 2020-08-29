@@ -16,6 +16,10 @@ class Order < ApplicationRecord
     Stripe::PaymentIntent.retrieve(stripe_payment_intent_id)
   end
 
+  def paid?
+    paid_at?
+  end
+
   def total_in_cents
     line_items.total_in_cents
   end

@@ -39,17 +39,17 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#update redirects to Confirm the order and continue shopping" do
-    order = prepare_for_payment! shipments(:shipment_rails)
+    shipment = prepare_for_payment! shipments(:shipment_rails)
 
     stub_payment_method("pm_visa") do |payment_method|
-      patch payment_path(order), params: {
+      patch payment_path(shipment), params: {
         payment: {
           stripe_payment_method: payment_method
         }
       }
     end
 
-    assert_redirected_to confirmation_url(order.becomes(Order).signed_id)
+    assert_redirected_to confirmation_url(shipment.becomes(Order).signed_id)
     assert_predicate cookies[:order_id], :blank?
   end
 
