@@ -1,9 +1,13 @@
 module Checkouts
   class PaymentsController < ApplicationController
     def new
-      payment = find_order.becomes(Payment)
+      order = find_order
 
-      render locals: {payment: payment}
+      if order.becomes(Shipment).valid?
+        render locals: {payment: order.becomes(Payment)}
+      else
+        redirect_to new_order_shipment_url(order)
+      end
     end
 
     def update
