@@ -12,6 +12,13 @@
   </h1>
 
   <%= form_with(model: shipment, html: {
+    "data-controller": "form",
+    "data-form-validation-messages-value": render(partial: "constraint_validation_messages", formats: :json),
+    "data-form-will-validate-value": shipment.errors.any?,
+    "data-action": "
+      submit->form#clearErrors
+      focusout->form#reportValidity
+    ",
     class: "
       flex
       flex-col
@@ -36,13 +43,13 @@
       ">
         <% with_options form: form, attribute: :name do |field| %>
           <%= field.render("label") %>
-          <%= field.render("text_field") %>
+          <%= field.render("text_field", required: true) %>
           <%= field.render("errors") %>
         <% end %>
 
         <% with_options form: form, attribute: :email do |field| %>
           <%= field.render("label") %>
-          <%= field.render("text_field", type: :email) %>
+          <%= field.render("text_field", type: :email, required: true) %>
           <%= field.render("errors") %>
         <% end %>
       </fieldset>
@@ -55,7 +62,7 @@
       ">
         <% with_options form: form, attribute: :line1 do |field| %>
           <%= field.render("label") %>
-          <%= field.render("text_field") %>
+          <%= field.render("text_field", required: true) %>
           <%= field.render("errors") %>
         <% end %>
 
@@ -67,7 +74,7 @@
 
         <% with_options form: form, attribute: :city do |field| %>
           <%= field.render("label") %>
-          <%= field.render("text_field") %>
+          <%= field.render("text_field", required: true) %>
           <%= field.render("errors") %>
         <% end %>
 
@@ -84,7 +91,7 @@
           ">
             <% with_options form: form, attribute: :state do |field| %>
               <%= field.render("label") %>
-              <%= field.render("text_field") %>
+              <%= field.render("text_field", required: true) %>
               <%= field.render("errors") %>
             <% end %>
           </div>
@@ -97,7 +104,7 @@
           ">
             <% with_options form: form, attribute: :postal_code do |field| %>
               <%= field.render("label") %>
-              <%= field.render("text_field") %>
+              <%= field.render("text_field", required: true, minlength: 5) %>
               <%= field.render("errors") %>
             <% end %>
           </div>

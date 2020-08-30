@@ -5,5 +5,6 @@
     w-full
   ",
   "aria-describedby": "#{form.object_name}_#{attribute}_errors",
+  "data-action": "invalid->form#showErrors",
   **local_assigns.except(:form, :attribute),
 ) %>

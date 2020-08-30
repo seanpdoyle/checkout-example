@@ -3,6 +3,7 @@
   class: "
     text-red-500
   ",
+  "data-form-target": "error",
   **local_assigns.except(:form, :attribute)
 ) do %>
   <%= form.object.errors[attribute].to_sentence %>
