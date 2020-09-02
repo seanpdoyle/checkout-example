@@ -24,7 +24,7 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
 
   test "#update marks the Order as paid" do
     freeze_time do
-      order = prepare_for_payment! shipments(:shipment_rails)
+      order = prepare_for_payment! orders(:shipment_rails)
 
       stub_payment_method("pm_visa") do |payment_method|
         patch payment_path(order), params: {
@@ -39,7 +39,7 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#update redirects to Confirm the order and continue shopping" do
-    order = prepare_for_payment! shipments(:shipment_rails)
+    order = prepare_for_payment! orders(:shipment_rails)
 
     stub_payment_method("pm_visa") do |payment_method|
       patch payment_path(order), params: {
@@ -49,12 +49,12 @@ class Checkouts::PaymentsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to confirmation_url(order.becomes(Order).signed_id)
+    assert_redirected_to confirmation_url(order.signed_id)
     assert_predicate cookies[:order_id], :blank?
   end
 
   test "#update rejects a submission where the payment method does not match Stripe's value" do
-    order = prepare_for_payment! shipments(:shipment_rails)
+    order = prepare_for_payment! orders(:shipment_rails)
 
     stub_payment_method("pm_visa") do |payment_method|
       assert_raises ActiveRecord::RecordInvalid do

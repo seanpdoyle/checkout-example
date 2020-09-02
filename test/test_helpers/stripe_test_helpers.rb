@@ -12,6 +12,6 @@ module StripeTestHelpers
   def prepare_for_payment!(shipment)
     shipment.prepare_for_payment!
 
-    shipment.becomes(Payment)
+    shipment
   end
 end

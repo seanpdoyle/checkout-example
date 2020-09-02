@@ -13,7 +13,7 @@ class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "#update for an existing Order writes the Checkout attributes" do
     order = orders(:rails)
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     patch shipment_path(order), params: {
       shipment: shipment.attributes
@@ -34,7 +34,7 @@ class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
   test "#update associates the Order with a Stripe::PaymentIntent" do
     payment_intent = OpenStruct.new(id: "pi_123")
     order = orders(:rails)
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     Stripe::PaymentIntent.stub(:create, payment_intent) do
       patch shipment_path(order), params: {
@@ -50,7 +50,7 @@ class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
     new_payment_intent = OpenStruct.new(id: "pi_456")
     order = orders(:rails)
     order.update!(stripe_payment_intent_id: original_payment_intent.id)
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     Stripe::PaymentIntent.stub(:create, new_payment_intent) do
       patch shipment_path(order), params: {
@@ -65,7 +65,7 @@ class Checkouts::ShipmentsControllerTest < ActionDispatch::IntegrationTest
     order = orders(:rails)
 
     patch shipment_path(order), params: {
-      shipment: Shipment.new.attributes
+      shipment: Order.new.attributes
     }
 
     assert_response :unprocessable_entity

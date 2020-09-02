@@ -1,16 +1,16 @@
 module Checkouts
   class ShipmentsController < ApplicationController
     def new
-      shipment = find_order.becomes(Shipment)
+      shipment = find_order
 
       render locals: {shipment: shipment}
     end
 
     def update
-      shipment = Shipment.find(params[:id])
+      shipment = Order.find(params[:id])
       shipment.assign_attributes(shipment_params)
 
-      if shipment.valid?
+      if shipment.valid?(:shipment)
         shipment.transaction do
           shipment.save!
 

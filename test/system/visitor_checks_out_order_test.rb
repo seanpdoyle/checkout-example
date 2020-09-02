@@ -16,7 +16,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor checks out with shipping details" do
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     shipment.books.each { |book| add_to_cart book }
     checkout
@@ -47,7 +47,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor submits payment for an order" do
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     shipment.books.each { |book| add_to_cart book }
     checkout
@@ -67,7 +67,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor is notified when a payment submission is declined" do
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     shipment.books.each { |book| add_to_cart book }
     checkout
@@ -85,7 +85,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor is notified when a payment submission has an expired card" do
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     shipment.books.each { |book| add_to_cart book }
     checkout
@@ -103,7 +103,7 @@ class VisitorChecksOutOrderTest < ApplicationSystemTestCase
   end
 
   test "visitor is notified when a payment submission's card verification check fails" do
-    shipment = shipments(:shipment_rails)
+    shipment = orders(:shipment_rails)
 
     shipment.books.each { |book| add_to_cart book }
     checkout

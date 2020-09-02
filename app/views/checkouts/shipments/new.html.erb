@@ -11,7 +11,7 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= form_with(model: shipment, html: {
+  <%= form_with(scope: :shipment, model: shipment, url: shipment_path(shipment), html: {
     "data-controller": "form",
     "data-form-validation-messages-value": render(partial: "constraint_validation_messages", formats: :json),
     "data-form-will-validate-value": shipment.errors.any?,
@@ -126,7 +126,7 @@
         rounded-lg
         space-y-2
       ">
-        <%= render(shipment.becomes(Order)) %>
+        <%= render(shipment) %>
       </aside>
 
       <%= form.button(class: "

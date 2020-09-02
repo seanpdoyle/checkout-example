@@ -1,3 +1,19 @@
-rails: {}
+rails: &rails
+  {}
 
 tools: {}
+
+shipment_rails: &shipment
+  <<: *rails
+  city: "New York"
+  email: "shopper@example.com"
+  line1: "1384 Broadway"
+  line2: "Floor 20"
+  name: "Savvy Shopper"
+  postal_code: "10013"
+  state: "NY"
+
+payment_rails:
+  <<: *shipment
+  stripe_payment_intent_id: "pi_visa"
+  paid_at: <%= 1.day.ago %>

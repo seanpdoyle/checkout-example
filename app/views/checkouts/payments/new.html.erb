@@ -11,7 +11,7 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= form_with(model: payment, html: {
+  <%= form_with(scope: :payment, model: payment, url: payment_path(payment), html: {
     class: "
       flex
       flex-col
@@ -126,7 +126,7 @@
         rounded-lg
         space-y-2
       ">
-        <%= render(payment.becomes(Order)) %>
+        <%= render(payment) %>
       </aside>
 
       <%= form.button(class: "

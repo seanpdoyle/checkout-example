@@ -3,21 +3,21 @@ module Checkouts
     def new
       order = find_order
 
-      if order.becomes(Shipment).valid?
-        render locals: {payment: order.becomes(Payment)}
+      if order.valid?(:shipment)
+        render locals: {payment: order}
       else
         redirect_to new_order_shipment_url(order)
       end
     end
 
     def update
-      payment = Payment.find(params[:id])
+      payment = Order.find(params[:id])
       payment.assign_attributes(payment_params)
 
-      confirmation = payment.paid!
+      payment.paid!
       cookies.delete(:order_id)
 
-      redirect_to confirmation_url(confirmation.signed_id), turbolinks: :advance
+      redirect_to confirmation_url(payment.signed_id), turbolinks: :advance
     end
 
     private
