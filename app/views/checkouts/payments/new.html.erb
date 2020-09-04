@@ -61,9 +61,11 @@
             items-stretch
             space-y-2
           ">
-            <%= render("label", form: form, attribute: :card_expiry) %>
-            <%= render("text_field", form: form, attribute: :card_expiry, "data-stripe-target": :cardExpiry) %>
-            <%= render("errors", form: form, attribute: :card_expiry, "data-stripe-target": :cardExpiryErrors) %>
+            <% with_options form: form, attribute: :card_expiry do |field| %>
+              <%= field.render("label") %>
+              <%= field.render("text_field", "data-stripe-target": :cardExpiry) %>
+              <%= field.render("errors", "data-stripe-target": :cardExpiryErrors) %>
+            <% end %>
           </div>
 
           <div class="
@@ -73,9 +75,11 @@
             items-stretch
             space-y-2
           ">
-            <%= render("label", form: form, attribute: :card_cvc) %>
-            <%= render("text_field", form: form, attribute: :card_cvc, "data-stripe-target": :cardCvc) %>
-            <%= render("errors", form: form, attribute: :card_cvc, "data-stripe-target": :cardCvcErrors) %>
+            <% with_options form: form, attribute: :card_cvc do |field| %>
+              <%= field.render("label") %>
+              <%= field.render("text_field", "data-stripe-target": :cardCvc) %>
+              <%= field.render("errors", "data-stripe-target": :cardCvcErrors) %>
+            <% end %>
           </div>
         </div>
       </fieldset>

@@ -34,13 +34,17 @@
         items-stretch
         space-y-2
       ">
-        <%= render("label", form: form, attribute: :name) %>
-        <%= render("text_field", form: form, attribute: :name) %>
-        <%= render("errors", form: form, attribute: :name) %>
+        <% with_options form: form, attribute: :name do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field") %>
+          <%= field.render("errors") %>
+        <% end %>
 
-        <%= render("label", form: form, attribute: :email) %>
-        <%= render("text_field", form: form, attribute: :email, type: :email) %>
-        <%= render("errors", form: form, attribute: :email) %>
+        <% with_options form: form, attribute: :email do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field", type: :email) %>
+          <%= field.render("errors") %>
+        <% end %>
       </fieldset>
 
       <fieldset class="
@@ -49,17 +53,23 @@
         items-stretch
         space-y-2
       ">
-        <%= render("label", form: form, attribute: :line1) %>
-        <%= render("text_field", form: form, attribute: :line1) %>
-        <%= render("errors", form: form, attribute: :line1) %>
+        <% with_options form: form, attribute: :line1 do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field") %>
+          <%= field.render("errors") %>
+        <% end %>
 
-        <%= render("label", form: form, attribute: :line2) %>
-        <%= render("text_field", form: form, attribute: :line2) %>
-        <%= render("errors", form: form, attribute: :line2) %>
+        <% with_options form: form, attribute: :line2 do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field") %>
+          <%= field.render("errors") %>
+        <% end %>
 
-        <%= render("label", form: form, attribute: :city) %>
-        <%= render("text_field", form: form, attribute: :city) %>
-        <%= render("errors", form: form, attribute: :city) %>
+        <% with_options form: form, attribute: :city do |field| %>
+          <%= field.render("label") %>
+          <%= field.render("text_field") %>
+          <%= field.render("errors") %>
+        <% end %>
 
         <div class="
           gap-4
@@ -72,9 +82,11 @@
             items-stretch
             space-y-2
           ">
-            <%= render("label", form: form, attribute: :state) %>
-            <%= render("text_field", form: form, attribute: :state) %>
-            <%= render("errors", form: form, attribute: :state) %>
+            <% with_options form: form, attribute: :state do |field| %>
+              <%= field.render("label") %>
+              <%= field.render("text_field") %>
+              <%= field.render("errors") %>
+            <% end %>
           </div>
 
           <div class="
@@ -83,9 +95,11 @@
             items-stretch
             space-y-2
           ">
-            <%= render("label", form: form, attribute: :postal_code) %>
-            <%= render("text_field", form: form, attribute: :postal_code) %>
-            <%= render("errors", form: form, attribute: :postal_code) %>
+            <% with_options form: form, attribute: :postal_code do |field| %>
+              <%= field.render("label") %>
+              <%= field.render("text_field") %>
+              <%= field.render("errors") %>
+            <% end %>
           </div>
         </div>
       </fieldset>
