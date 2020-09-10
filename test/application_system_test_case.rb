@@ -2,6 +2,7 @@ require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::TranslationHelper
 
   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
 
