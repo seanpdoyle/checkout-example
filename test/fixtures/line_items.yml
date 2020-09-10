@@ -1,0 +1,9 @@
+ruby_science_rails:
+  order: rails
+  book: ruby_science
+  quantity: 1
+
+testing_rails_rails:
+  order: rails
+  book: testing_rails
+  quantity: 1

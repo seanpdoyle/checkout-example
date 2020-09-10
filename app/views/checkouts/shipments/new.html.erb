@@ -11,16 +11,92 @@
     <%= translate(".title") %>
   </h1>
 
-  <%= tag.div({
+  <%= form_with(model: shipment, html: {
     class: "
       flex
       flex-col
+      items-stretch
       md:flex-row
     ",
-  }) do%>
+  }) do |form| %>
+    <%= form.hidden_field :country %>
+
     <section class="
       flex-grow
+      mb-8
+      md:mb-auto
+      md:mr-24
+      space-y-4
     ">
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <%= form.label(:name, class: "
+          block
+        ") %>
+        <%= form.text_field(:name) %>
+
+        <%= form.label(:email, class: "
+          block
+        ") %>
+        <%= form.email_field(:email) %>
+      </fieldset>
+
+      <fieldset class="
+        flex
+        flex-col
+        items-stretch
+        space-y-2
+      ">
+        <%= form.label(:line1, class: "
+          block
+        ") %>
+        <%= form.text_field(:line1) %>
+
+        <%= form.label(:line2, class: "
+          block
+        ") %>
+        <%= form.text_field(:line2) %>
+
+        <%= form.label(:city, class: "
+          block
+        ") %>
+        <%= form.text_field(:city) %>
+
+        <div class="
+          gap-4
+          grid
+          md:grid-cols-2
+        ">
+          <div class="
+            flex
+            flex-col
+            items-stretch
+            space-y-2
+          ">
+            <%= form.label(:state, class: "
+              block
+            ") %>
+            <%= form.text_field(:state) %>
+          </div>
+
+          <div class="
+            flex
+            flex-col
+            items-stretch
+            space-y-2
+          ">
+            <%= form.label(:postal_code, class: "
+              block
+            ") %>
+
+            <%= form.text_field(:postal_code) %>
+          </div>
+        </div>
+      </fieldset>
     </section>
 
     <section class="
@@ -157,6 +233,18 @@
           </tfoot>
         </table>
       </aside>
+
+      <%= form.button(class: "
+        bg-red-600
+        hover:bg-red-700
+        px-4
+        py-2
+        rounded-full
+        text-center
+        text-white
+        text-xl
+        w-full
+      ") %>
     </section>
   <% end %>
 </section>

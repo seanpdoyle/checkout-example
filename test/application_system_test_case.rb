@@ -27,8 +27,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     within("details[open]", text: translate("orders.order.title"), &block)
   end
 
-  def submit(i18n_key)
-    translate(:create, scope: [:helpers, :submit, i18n_key])
+  def submit(i18n_key, action = :create)
+    translate(action, scope: [:helpers, :submit, i18n_key])
+  end
+
+  def label(i18n_key, attribute)
+    translate(attribute, scope: [:helpers, :label, i18n_key])
   end
 
   def assert_book(book)

@@ -44,6 +44,9 @@ en:
       library: "Library"
 
   checkouts:
+    payments:
+      new:
+        title: "Payment Details"
     shipments:
       new:
         checkouts: "Checkout"
@@ -51,7 +54,21 @@ en:
         title: "Billing and Shipping Details"
 
   helpers:
+    label:
+      line_item:
+        increment: "Quantity"
+      shipment:
+        city: "City"
+        email: "Email Address"
+        line1: "Address"
+        line2: "Apartment / Floor (optional)"
+        name: "Name"
+        postal_code: "Postal Code"
+        state: "State"
+
     submit:
+      shipment:
+        update: "Continue"
       line_item:
         create: "Add to Cart"
         update: "Remove from Cart"

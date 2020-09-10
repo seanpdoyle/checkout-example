@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   scope module: :checkouts do
     resources :orders, only: [] do
       resources :shipments, only: [:new]
+      resources :payments, only: [:new]
     end
+
+    resources :shipments, only: [:update]
   end
 
   root to: redirect("/books")
